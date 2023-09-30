@@ -1,0 +1,51 @@
+name: バグ報告
+description: |
+  バグを報告する。
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: checkboxes
+    attributes:
+      label: 重複するIssueが既に存在していませんか？
+      description: あなたが作成しようとしているIssueが、既に存在するかどうか確認してください。
+      options:
+        - label: 重複するIssueがないか確認しました。
+          required: true
+  - type: textarea
+    attributes:
+      label: 再現手順
+      description: 遭遇した問題を再現する方法を正確に教えてください。
+      placeholder: |
+        1. この環境で...
+        2. この設定で...
+        3. '...' を実行すると
+        4. '...' のエラーが発生しました
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: 期待される動作
+      description: 期待される動作を簡潔に説明してください。
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: 現在の動作
+      description: 現在の動作を簡潔に説明してください。
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: 関連するログ出力
+      description: 必要に応じて、関連するログ出力を貼り付けてください。これは自動的にコードにフォーマットされるので、バッククォートは必要ありません。
+      render: Shell
+    validations:
+      required: false
+  - type: textarea
+    id: others
+    attributes:
+      label: その他
+      description: このIssueに関するその他の情報やスクリーンショットをここに追加してください。
+    validations:
+      required: false
