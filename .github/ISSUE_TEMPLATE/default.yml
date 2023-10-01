@@ -1,0 +1,32 @@
+name: デフォルト
+description: 最も基本的なIssueテンプレート。
+body:
+  - type: checkboxes
+    attributes:
+      label: 重複するIssueが既に存在していませんか？
+      description: あなたが作成しようとしているIssueが、既に存在するかどうか確認してください。
+      options:
+        - label: 重複するIssueがないか確認しました。
+          required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: 説明
+      description: Issueの内容を具体的に説明してください。
+    validations:
+      required: true
+  - type: textarea
+    id: todo
+    attributes:
+      label: Todo
+      description: Issueの内容を実現するために必要なタスクを列挙してください。
+      value: "- [ ] "
+    validations:
+      required: false
+  - type: textarea
+    id: others
+    attributes:
+      label: その他
+      description: このIssueに関するその他の情報やスクリーンショットをここに追加してください。
+    validations:
+      required: false
