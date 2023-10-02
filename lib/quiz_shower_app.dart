@@ -6,11 +6,18 @@ class QuizShowerApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const seedColor = Color(0xFFEAA4A4);
     return MaterialApp(
       title: 'Quiz Shower',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
+        colorSchemeSeed: seedColor,
+        brightness: Brightness.light,
+      ),
+      darkTheme: ThemeData(
+        useMaterial3: true,
+        colorSchemeSeed: seedColor,
+        brightness: Brightness.dark,
       ),
       home: const QuizShowerScaffold(),
     );
