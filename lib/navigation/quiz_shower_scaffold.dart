@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_shower/ui/screens/article_screen/article_screen.dart';
-import 'package:quiz_shower/ui/screens/user_screen/user_screen.dart';
-import 'package:quiz_shower/ui/screens/quiz_screen/quiz_screen.dart';
+import 'package:quiz_shower/ui/screen/article_screen/article_screen.dart';
+import 'package:quiz_shower/ui/screen/user_screen/user_screen.dart';
+import 'package:quiz_shower/ui/screen/quiz_screen/quiz_screen.dart';
 
 class QuizShowerScaffold extends StatefulWidget {
   const QuizShowerScaffold({super.key});
