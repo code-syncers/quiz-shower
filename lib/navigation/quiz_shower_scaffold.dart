@@ -3,14 +3,14 @@ import 'package:quiz_shower/ui/screens/article_screen/article_screen.dart';
 import 'package:quiz_shower/ui/screens/user_screen/user_screen.dart';
 import 'package:quiz_shower/ui/screens/quiz_screen/quiz_screen.dart';
 
-class QuizShowerNavigation extends StatefulWidget {
-  const QuizShowerNavigation({super.key});
+class QuizShowerScaffold extends StatefulWidget {
+  const QuizShowerScaffold({super.key});
 
   @override
-  State<QuizShowerNavigation> createState() => _QuizShowerNavigationState();
+  State<QuizShowerScaffold> createState() => _QuizShowerScaffoldState();
 }
 
-class _QuizShowerNavigationState extends State<QuizShowerNavigation> {
+class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
   var _currentPageIndex = 0;
 
   final _pages = <Widget>[
