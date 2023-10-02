@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_shower/navigation/quiz_shower_scaffold.dart';
+import 'package:quiz_shower/ui/widget/quiz_shower_scaffold.dart';
 
 class QuizShowerApp extends StatelessWidget {
   const QuizShowerApp({super.key});
