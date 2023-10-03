@@ -5,8 +5,11 @@ class ArticleScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('記事を入力します'),
+      ),
+      body: const Center(
         child: Text('article'),
       ),
     );
