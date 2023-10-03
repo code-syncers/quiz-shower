@@ -6,6 +6,10 @@ jobs:
   labelWhenApproved:
     name: Label when approved
     runs-on: ubuntu-latest
+
+    permissions:
+      pull-requests: write
+
     steps:
       - name: Label when approved
         uses: pullreminders/label-when-approved-action@master
