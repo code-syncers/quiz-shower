@@ -10,8 +10,14 @@ class QuizScreen extends StatelessWidget {
           title: const Text('記事のタイトル'),
         ),
         body: const SingleChildScrollView(
-          child: Center(
-            child: Text('quiz'),
+          child: Padding(
+            padding: EdgeInsets.fromLTRB(30, 30, 30, 0),
+            child: Column(children: [
+              Text(
+                "Q番号.  問題文",
+                style: TextStyle(fontSize: 20), // 任意でスタイルを調整できます
+              ),
+            ]),
           ),
         ));
   }
