@@ -6,12 +6,13 @@ class QuizScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('記事のタイトル'),
-      ),
-      body: const Center(
-        child: Text('quiz'),
-      ),
-    );
+        appBar: AppBar(
+          title: const Text('記事のタイトル'),
+        ),
+        body: const SingleChildScrollView(
+          child: Center(
+            child: Text('quiz'),
+          ),
+        ));
   }
 }
