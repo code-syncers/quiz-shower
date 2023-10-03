@@ -17,6 +17,14 @@ class QuizScreen extends StatelessWidget {
                 "Q番号.  問題文",
                 style: TextStyle(fontSize: 20), // 任意でスタイルを調整できます
               ),
+              SizedBox(height: 20),
+              Text("a. 選択肢1"),
+              SizedBox(height: 10),
+              Text("b. 選択肢2"),
+              SizedBox(height: 10),
+              Text("c. 選択肢3"),
+              SizedBox(height: 10),
+              Text("d. 選択肢4"),
             ]),
           ),
         ));
