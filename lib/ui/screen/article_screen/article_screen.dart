@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ArticleScreen extends StatelessWidget {
   const ArticleScreen({super.key});
@@ -7,7 +8,12 @@ class ArticleScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('記事を入力します'),
+          title: Text(
+            '記事を入力します',
+            style: GoogleFonts.zenKakuGothicNew(
+              fontSize: 28,
+            ),
+          ),
         ),
         body: const SingleChildScrollView(
           child: Center(
