@@ -22,6 +22,50 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        // AppBarを追加
+        leading: Builder(
+          builder: (context) => IconButton(
+            // 三本線のアイコンを追加
+            icon: const Icon(Icons.menu),
+            onPressed: () =>
+                Scaffold.of(context).openDrawer(), // アイコンをタップするとDrawerを開く
+          ),
+        ),
+      ),
+      drawer: Drawer(
+        // Drawerを追加
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.primary,
+              ),
+              child: const Text('Menu'), // Drawerのヘッダ部分。任意でカスタマイズ可能。
+            ),
+            ListTile(
+              title: const Text('設定'),
+              onTap: () {
+                Navigator.pop(context); // Close the drawer first
+                Navigator.pushNamed(context,
+                    '/setting_screen'); // Then navigate to SettingScreen
+              },
+            ),
+
+            ListTile(
+              title: const Text('サインイン'), // メニューアイテム2
+              onTap: () {
+                // Update the state of the app
+                // Then close the drawer
+                Navigator.pop(context);
+              },
+            ),
+            // 他のリストアイテムをここに追加
+          ],
+        ),
+      ),
+      body: _pages[_currentPageIndex],
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: (int index) {
           setState(() {
@@ -48,7 +92,6 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
           ),
         ],
       ),
-      body: _pages[_currentPageIndex],
     );
   }
 }
