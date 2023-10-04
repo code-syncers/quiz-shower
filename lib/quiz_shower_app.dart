@@ -13,7 +13,7 @@ class QuizShowerApp extends StatelessWidget {
     const seedColor = Color(0xFFEAA4A4);
     return MaterialApp(
       routes: {
-        '/setting_screen': (context) => const SettingScreen(), // Add this line
+        '/setting_screen': (context) => const SettingScreen(),
       },
       title: 'Quiz Shower',
       theme: ThemeData(
