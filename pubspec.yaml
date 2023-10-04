@@ -10,6 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   flutter_web_plugins:
     sdk: flutter
   firebase_core: ^2.16.0
@@ -17,6 +19,7 @@ dependencies:
   cloud_functions: ^4.4.1
   firebase_auth: ^4.10.0
   logger: ^2.0.2+1
+  firebase_ui_localizations: ^1.6.1
 
 dev_dependencies:
   flutter_test:
@@ -25,3 +28,9 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+  fonts:
+    - family: NotoSansJP
+      fonts:
+        - asset: assets/fonts/NotoSansJP-Regular.ttf
+        - asset: assets/fonts/NotoSansJP-SemiBold.ttf
