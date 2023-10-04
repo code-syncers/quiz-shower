@@ -22,6 +22,41 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: Builder(
+          builder: (context) => IconButton(
+            icon: const Icon(Icons.menu),
+            onPressed: () => Scaffold.of(context).openDrawer(),
+          ),
+        ),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.primary,
+              ),
+              child: const Text('Menu'),
+            ),
+            ListTile(
+              title: const Text('設定'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, '/setting_screen');
+              },
+            ),
+            ListTile(
+              title: const Text('サインイン'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
+      ),
+      body: _pages[_currentPageIndex],
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: (int index) {
           setState(() {
@@ -48,7 +83,6 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
           ),
         ],
       ),
-      body: _pages[_currentPageIndex],
     );
   }
 }
