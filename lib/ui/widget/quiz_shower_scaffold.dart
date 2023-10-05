@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quiz_shower/ui/screen/article_screen/article_screen.dart';
 import 'package:quiz_shower/ui/screen/user_screen/user_screen.dart';
 import 'package:quiz_shower/ui/screen/quiz_screen/quiz_screen.dart';
+import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 
 class QuizShowerScaffold extends StatefulWidget {
   const QuizShowerScaffold({super.key});
@@ -49,8 +50,14 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
             ),
             ListTile(
               title: const Text('サインイン'),
-              onTap: () {
+              onTap: () async {
                 Navigator.pop(context);
+                await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const SignInScreen(),
+                  ),
+                );
               },
             ),
           ],
