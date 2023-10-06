@@ -15,6 +15,7 @@ class QuizShowerScaffold extends StatefulWidget {
 class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
   var _currentPageIndex = 0;
   String _currentUserEmail = '';
+  bool _isUserLoggedIn = false;
 
   final _pages = <Widget>[
     const ArticleScreen(),
@@ -29,7 +30,9 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
   void initState() {
     super.initState();
     fb_auth.FirebaseAuth.instance.authStateChanges().listen((user) {
-      if (user != null && !user.isAnonymous) {
+      // ログイン状態が変わったときにSnackBarを表示させる
+      if (user != null && !user.isAnonymous && !_isUserLoggedIn) {
+        _isUserLoggedIn = true;
         setState(() {
           _currentUserEmail = user.email ?? '';
         });
@@ -41,7 +44,8 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
             ),
           );
         });
-      } else {
+      } else if (user == null && _isUserLoggedIn) {
+        _isUserLoggedIn = false;
         setState(() {
           _currentUserEmail = '';
         });
@@ -80,7 +84,7 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
                   },
                 ),
                 ListTile(
-                  title: const Text('サインイン'),
+                  title: const Text('ログイン/登録'),
                   onTap: () async {
                     Navigator.pop(context);
                     await Navigator.push(
@@ -89,6 +93,52 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
                         builder: (context) => ui_auth.SignInScreen(
                             providers: [ui_auth.EmailAuthProvider()]),
                       ),
+                    );
+                  },
+                ),
+                ListTile(
+                  title: const Text('ログアウト'),
+                  onTap: () async {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title:
+                              const Text('ログアウト', textAlign: TextAlign.center),
+                          content: const Text('本当にログアウトしますか？',
+                              textAlign: TextAlign.center),
+                          actions: <Widget>[
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Spacer(
+                                  flex: 3,
+                                ),
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: const Text('キャンセル'),
+                                ),
+                                const Spacer(
+                                  flex: 1,
+                                ),
+                                TextButton(
+                                  onPressed: () async {
+                                    Navigator.of(context).pop();
+                                    await fb_auth.FirebaseAuth.instance
+                                        .signOut();
+                                  },
+                                  child: const Text('ログアウト'),
+                                ),
+                                const Spacer(
+                                  flex: 3,
+                                ),
+                              ],
+                            ),
+                          ],
+                        );
+                      },
                     );
                   },
                 ),
