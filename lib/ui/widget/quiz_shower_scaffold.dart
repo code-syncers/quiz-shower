@@ -74,7 +74,15 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
                   decoration: BoxDecoration(
                     color: Theme.of(context).colorScheme.primary,
                   ),
-                  child: Text(_currentUserEmail),
+                  child: Text(
+                    _currentUserEmail.isEmpty
+                        ? 'ログインしていません'
+                        : _currentUserEmail,
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onPrimary,
+                      fontSize: 24,
+                    ),
+                  ),
                 ),
                 ListTile(
                   title: const Text('設定'),
@@ -83,65 +91,67 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
                     Navigator.pushNamed(context, '/setting_screen');
                   },
                 ),
-                ListTile(
-                  title: const Text('ログイン/登録'),
-                  onTap: () async {
-                    Navigator.pop(context);
-                    await Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ui_auth.SignInScreen(
-                            providers: [ui_auth.EmailAuthProvider()]),
-                      ),
-                    );
-                  },
-                ),
-                ListTile(
-                  title: const Text('ログアウト'),
-                  onTap: () async {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          title:
-                              const Text('ログアウト', textAlign: TextAlign.center),
-                          content: const Text('本当にログアウトしますか？',
-                              textAlign: TextAlign.center),
-                          actions: <Widget>[
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const Spacer(
-                                  flex: 3,
-                                ),
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                  child: const Text('キャンセル'),
-                                ),
-                                const Spacer(
-                                  flex: 1,
-                                ),
-                                TextButton(
-                                  onPressed: () async {
-                                    Navigator.of(context).pop();
-                                    await fb_auth.FirebaseAuth.instance
-                                        .signOut();
-                                  },
-                                  child: const Text('ログアウト'),
-                                ),
-                                const Spacer(
-                                  flex: 3,
-                                ),
-                              ],
-                            ),
-                          ],
-                        );
-                      },
-                    );
-                  },
-                ),
+                if (!_isUserLoggedIn)
+                  ListTile(
+                    title: const Text('ログイン/登録'),
+                    onTap: () async {
+                      Navigator.pop(context);
+                      await Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ui_auth.SignInScreen(
+                              providers: [ui_auth.EmailAuthProvider()]),
+                        ),
+                      );
+                    },
+                  ),
+                if (_isUserLoggedIn)
+                  ListTile(
+                    title: const Text('ログアウト'),
+                    onTap: () async {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: const Text('ログアウト',
+                                textAlign: TextAlign.center),
+                            content: const Text('本当にログアウトしますか？',
+                                textAlign: TextAlign.center),
+                            actions: <Widget>[
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  const Spacer(
+                                    flex: 3,
+                                  ),
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: const Text('キャンセル'),
+                                  ),
+                                  const Spacer(
+                                    flex: 1,
+                                  ),
+                                  TextButton(
+                                    onPressed: () async {
+                                      Navigator.of(context).pop();
+                                      await fb_auth.FirebaseAuth.instance
+                                          .signOut();
+                                    },
+                                    child: const Text('ログアウト'),
+                                  ),
+                                  const Spacer(
+                                    flex: 3,
+                                  ),
+                                ],
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    },
+                  ),
               ],
             ),
           ),
