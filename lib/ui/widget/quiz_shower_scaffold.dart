@@ -109,11 +109,11 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
                               if (!mounted) return;
                               Navigator.of(context).push(MaterialPageRoute(
                                   builder: (context) =>
-                                      const QuizShowerScaffold()));
-                            })
+                                      const QuizShowerScaffold(),),);
+                            }),
                           ], providers: [
-                            EmailAuthProvider()
-                          ]),
+                            EmailAuthProvider(),
+                          ],),
                         ),
                       );
                     },
@@ -122,14 +122,14 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
                   ListTile(
                     title: const Text('ログアウト'),
                     onTap: () async {
-                      showDialog(
+                      await showDialog(
                         context: context,
                         builder: (BuildContext context) {
                           return AlertDialog(
                             title: const Text('ログアウト',
-                                textAlign: TextAlign.center),
+                                textAlign: TextAlign.center,),
                             content: const Text('本当にログアウトしますか？',
-                                textAlign: TextAlign.center),
+                                textAlign: TextAlign.center,),
                             actions: <Widget>[
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -194,6 +194,6 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
               ),
             ],
           ),
-        ));
+        ),);
   }
 }
