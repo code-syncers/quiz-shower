@@ -1,9 +1,9 @@
+import 'package:firebase_ui_localizations/firebase_ui_localizations.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:quiz_shower/ui/screen/setting_screen/setting_screen.dart';
 import 'package:quiz_shower/ui/widget/quiz_shower_scaffold.dart';
-import 'package:firebase_ui_localizations/firebase_ui_localizations.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 
 class QuizShowerApp extends StatelessWidget {
   const QuizShowerApp({super.key});
