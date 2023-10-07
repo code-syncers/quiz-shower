@@ -1,11 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart' hide EmailAuthProvider;
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:quiz_shower/ui/screen/article_screen/article_screen.dart';
-import 'package:quiz_shower/ui/screen/quiz_screen/quiz_screen.dart';
-import 'package:quiz_shower/ui/screen/user_screen/user_screen.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
-class QuizShowerScaffold extends StatefulWidget {
+class QuizShowerScaffold extends StatefulHookWidget {
   const QuizShowerScaffold({super.key});
 
   @override
@@ -13,15 +11,8 @@ class QuizShowerScaffold extends StatefulWidget {
 }
 
 class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
-  var _currentPageIndex = 0;
-  String _currentUserEmail = '';
   bool _isUserLoggedIn = false;
-
-  final _pages = <Widget>[
-    const ArticleScreen(),
-    const QuizScreen(),
-    const UserScreen(),
-  ];
+  String _currentUserEmail = '';
 
   final GlobalKey<ScaffoldMessengerState> _scaffoldMessengerKey =
       GlobalKey<ScaffoldMessengerState>();
@@ -175,30 +166,18 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
             ],
           ),
         ),
-        body: _pages[_currentPageIndex],
-        bottomNavigationBar: NavigationBar(
-          onDestinationSelected: (int index) {
-            setState(() {
-              _currentPageIndex = index;
-            });
-          },
-          selectedIndex: _currentPageIndex,
-          labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
-          destinations: const <Widget>[
-            NavigationDestination(
-              icon: Icon(Icons.description_outlined),
-              selectedIcon: Icon(Icons.description_rounded),
-              label: '記事',
+        body: Stack(
+          alignment: AlignmentDirectional.topCenter,
+          children: [
+            Center(
+              child: Text(
+                'Hello, World!',
+                style: Theme.of(context).textTheme.headlineMedium,
+              ),
             ),
-            NavigationDestination(
-              icon: Icon(Icons.quiz_outlined),
-              selectedIcon: Icon(Icons.quiz_rounded),
-              label: 'クイズ',
-            ),
-            NavigationDestination(
-              icon: Icon(Icons.account_circle_outlined),
-              selectedIcon: Icon(Icons.account_circle_rounded),
-              label: 'ユーザー',
+            Align(
+              alignment: AlignmentDirectional.bottomCenter,
+              child: Switch(value: true, onChanged: (value) {}),
             ),
           ],
         ),
