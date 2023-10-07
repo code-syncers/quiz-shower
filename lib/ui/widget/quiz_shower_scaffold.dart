@@ -1,3 +1,4 @@
+import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:quiz_shower/ui/screen/article_screen/article_screen.dart';
 import 'package:quiz_shower/ui/screen/user_screen/user_screen.dart';
@@ -30,7 +31,6 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
   void initState() {
     super.initState();
     fb_auth.FirebaseAuth.instance.authStateChanges().listen((user) {
-      // ログイン状態が変わったときにSnackBarを表示させる
       if (user != null && !user.isAnonymous && !_isUserLoggedIn) {
         _isUserLoggedIn = true;
         setState(() {
@@ -95,12 +95,26 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
                   ListTile(
                     title: const Text('ログイン/登録'),
                     onTap: () async {
-                      Navigator.pop(context);
+                      Navigator.pop(context); // close the drawer
                       await Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => ui_auth.SignInScreen(
-                              providers: [ui_auth.EmailAuthProvider()]),
+                          builder: (context) => ui_auth.SignInScreen(actions: [
+                            AuthStateChangeAction<SignedIn>((context, state) {
+                              _scaffoldMessengerKey.currentState?.showSnackBar(
+                                const SnackBar(
+                                  content: Text('ログインしました'),
+                                  duration: Duration(seconds: 2),
+                                ),
+                              );
+                              if (!mounted) return;
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) =>
+                                      const QuizShowerScaffold()));
+                            })
+                          ], providers: [
+                            ui_auth.EmailAuthProvider()
+                          ]),
                         ),
                       );
                     },
