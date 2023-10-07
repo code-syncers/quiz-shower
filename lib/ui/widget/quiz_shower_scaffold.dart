@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:quiz_shower/ui/screen/article_screen/article_screen.dart';
 import 'package:quiz_shower/ui/screen/user_screen/user_screen.dart';
 import 'package:quiz_shower/ui/screen/quiz_screen/quiz_screen.dart';
-import 'package:firebase_auth/firebase_auth.dart' as fb_auth;
-import 'package:firebase_ui_auth/firebase_ui_auth.dart' as ui_auth;
+import 'package:firebase_auth/firebase_auth.dart' hide EmailAuthProvider;
 
 class QuizShowerScaffold extends StatefulWidget {
   const QuizShowerScaffold({super.key});
@@ -30,7 +29,7 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
   @override
   void initState() {
     super.initState();
-    fb_auth.FirebaseAuth.instance.authStateChanges().listen((user) {
+    FirebaseAuth.instance.authStateChanges().listen((user) {
       if (user != null && !user.isAnonymous && !_isUserLoggedIn) {
         _isUserLoggedIn = true;
         setState(() {
@@ -99,7 +98,7 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
                       await Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => ui_auth.SignInScreen(actions: [
+                          builder: (context) => SignInScreen(actions: [
                             AuthStateChangeAction<SignedIn>((context, state) {
                               _scaffoldMessengerKey.currentState?.showSnackBar(
                                 const SnackBar(
@@ -113,7 +112,7 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
                                       const QuizShowerScaffold()));
                             })
                           ], providers: [
-                            ui_auth.EmailAuthProvider()
+                            EmailAuthProvider()
                           ]),
                         ),
                       );
@@ -150,8 +149,7 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
                                   TextButton(
                                     onPressed: () async {
                                       Navigator.of(context).pop();
-                                      await fb_auth.FirebaseAuth.instance
-                                          .signOut();
+                                      await FirebaseAuth.instance.signOut();
                                     },
                                     child: const Text('ログアウト'),
                                   ),
