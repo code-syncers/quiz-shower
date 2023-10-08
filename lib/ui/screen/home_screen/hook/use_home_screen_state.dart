@@ -1,13 +1,16 @@
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class HomeScreenState {
-  const HomeScreenState({
-    required this.isQuizMode,
-    required this.toggleQuizMode,
-  });
+part 'use_home_screen_state.freezed.dart';
 
-  final bool isQuizMode;
-  final void Function() toggleQuizMode;
+@freezed
+class HomeScreenState with _$HomeScreenState {
+  const HomeScreenState._();
+
+  const factory HomeScreenState({
+    required bool isQuizMode,
+    required void Function() toggleQuizMode,
+  }) = _HomeScreenState;
 }
 
 HomeScreenState useHomeScreenState({
