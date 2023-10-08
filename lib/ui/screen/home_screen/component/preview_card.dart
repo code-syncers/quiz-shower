@@ -28,7 +28,7 @@ class PreviewCard extends StatelessWidget {
                     builder: (context) => const QuizScreen(),
                   ),
                 )
-              : launchUrlString(article.url);
+              : launchUrlString(article.url ?? '');
         },
         child: ListTile(
           title: Text(article.title),
