@@ -1,5 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:quiz_shower/data/model/history_quiz.dart';
 
 part 'history.freezed.dart';
 
