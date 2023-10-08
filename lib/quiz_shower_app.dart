@@ -11,7 +11,7 @@ class QuizShowerApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const seedColor = Color(0xFFEAA4A4);
+    const seedColor = Color(0xFFFF842F);
 
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(

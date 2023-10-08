@@ -174,8 +174,8 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
           alignment: AlignmentDirectional.topCenter,
           children: [
             ListView.separated(
-              padding: const EdgeInsets.all(8),
-              itemCount: 5,
+              padding: const EdgeInsets.fromLTRB(8, 8, 8, 80),
+              itemCount: 50,
               itemBuilder: (BuildContext context, int index) {
                 return PreviewCard(
                   article: Article.mock(),
@@ -185,13 +185,15 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
               separatorBuilder: (BuildContext context, int index) =>
                   const SizedBox(height: 8),
             ),
-            Align(
-              alignment: AlignmentDirectional.bottomCenter,
-              child: Switch(
-                value: state.isQuizMode,
-                onChanged: (value) {
-                  state.toggleQuizMode();
-                },
+            SafeArea(
+              child: Align(
+                alignment: AlignmentDirectional.bottomCenter,
+                child: Switch(
+                  value: state.isQuizMode,
+                  onChanged: (value) {
+                    state.toggleQuizMode();
+                  },
+                ),
               ),
             ),
           ],

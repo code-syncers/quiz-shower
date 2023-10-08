@@ -16,6 +16,10 @@ class PreviewCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      shadowColor: Colors.transparent,
+      elevation: isQuizMode ? 4 : 1,
+      surfaceTintColor:
+          isQuizMode ? null : Theme.of(context).colorScheme.tertiary,
       child: InkWell(
         onTap: () {
           isQuizMode
