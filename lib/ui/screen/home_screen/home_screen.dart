@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart' hide EmailAuthProvider;
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:quiz_shower/data/model/article.dart';
+import 'package:quiz_shower/ui/screen/home_screen/component/preview_card.dart';
 import 'package:quiz_shower/ui/screen/home_screen/hook/use_home_screen_state.dart';
 
 class QuizShowerScaffold extends StatefulHookWidget {
@@ -171,11 +173,17 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
         body: Stack(
           alignment: AlignmentDirectional.topCenter,
           children: [
-            Center(
-              child: Text(
-                'Hello, World!',
-                style: Theme.of(context).textTheme.headlineMedium,
-              ),
+            ListView.separated(
+              padding: const EdgeInsets.all(8),
+              itemCount: 5,
+              itemBuilder: (BuildContext context, int index) {
+                return PreviewCard(
+                  article: Article.mock(),
+                  isQuizMode: state.isQuizMode,
+                );
+              },
+              separatorBuilder: (BuildContext context, int index) =>
+                  const SizedBox(height: 8),
             ),
             Align(
               alignment: AlignmentDirectional.bottomCenter,
