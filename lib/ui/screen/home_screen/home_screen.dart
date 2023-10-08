@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart' hide EmailAuthProvider;
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:quiz_shower/ui/screen/home_screen/hook/use_home_screen_state.dart';
 
 class QuizShowerScaffold extends StatefulHookWidget {
   const QuizShowerScaffold({super.key});
@@ -45,6 +46,7 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
 
   @override
   Widget build(BuildContext context) {
+    HomeScreenState state = useHomeScreenState(isQuizMode: false);
     return ScaffoldMessenger(
       key: _scaffoldMessengerKey,
       child: Scaffold(
@@ -177,7 +179,12 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
             ),
             Align(
               alignment: AlignmentDirectional.bottomCenter,
-              child: Switch(value: true, onChanged: (value) {}),
+              child: Switch(
+                value: state.isQuizMode,
+                onChanged: (value) {
+                  state.toggleQuizMode();
+                },
+              ),
             ),
           ],
         ),
