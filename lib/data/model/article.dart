@@ -17,7 +17,6 @@ class Article with _$Article {
     required ArticleType type,
     required String? url,
     required String content,
-    required List<Quiz> quizzes,
     @Default(false) bool isPublic,
   }) = _Article;
 
@@ -32,7 +31,6 @@ class Article with _$Article {
       type: ArticleType.url,
       url: 'https://gajeroll.com/20230606-wwdc23/',
       content: 'Flutterで透明UIを作る方法を紹介します。',
-      quizzes: [Quiz.mock()],
     );
   }
 }

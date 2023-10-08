@@ -25,7 +25,6 @@ mixin _$Article {
   ArticleType get type => throw _privateConstructorUsedError;
   String? get url => throw _privateConstructorUsedError;
   String get content => throw _privateConstructorUsedError;
-  List<Quiz> get quizzes => throw _privateConstructorUsedError;
   bool get isPublic => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -47,7 +46,6 @@ abstract class $ArticleCopyWith<$Res> {
       ArticleType type,
       String? url,
       String content,
-      List<Quiz> quizzes,
       bool isPublic});
 }
 
@@ -73,7 +71,6 @@ class _$ArticleCopyWithImpl<$Res, $Val extends Article>
     Object? type = null,
     Object? url = freezed,
     Object? content = null,
-    Object? quizzes = null,
     Object? isPublic = null,
   }) {
     return _then(_value.copyWith(
@@ -113,10 +110,6 @@ class _$ArticleCopyWithImpl<$Res, $Val extends Article>
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
               as String,
-      quizzes: null == quizzes
-          ? _value.quizzes
-          : quizzes // ignore: cast_nullable_to_non_nullable
-              as List<Quiz>,
       isPublic: null == isPublic
           ? _value.isPublic
           : isPublic // ignore: cast_nullable_to_non_nullable
@@ -142,7 +135,6 @@ abstract class _$$ArticleImplCopyWith<$Res> implements $ArticleCopyWith<$Res> {
       ArticleType type,
       String? url,
       String content,
-      List<Quiz> quizzes,
       bool isPublic});
 }
 
@@ -166,7 +158,6 @@ class __$$ArticleImplCopyWithImpl<$Res>
     Object? type = null,
     Object? url = freezed,
     Object? content = null,
-    Object? quizzes = null,
     Object? isPublic = null,
   }) {
     return _then(_$ArticleImpl(
@@ -206,10 +197,6 @@ class __$$ArticleImplCopyWithImpl<$Res>
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
               as String,
-      quizzes: null == quizzes
-          ? _value._quizzes
-          : quizzes // ignore: cast_nullable_to_non_nullable
-              as List<Quiz>,
       isPublic: null == isPublic
           ? _value.isPublic
           : isPublic // ignore: cast_nullable_to_non_nullable
@@ -231,10 +218,8 @@ class _$ArticleImpl extends _Article {
       required this.type,
       required this.url,
       required this.content,
-      required final List<Quiz> quizzes,
       this.isPublic = false})
-      : _quizzes = quizzes,
-        super._();
+      : super._();
 
   @override
   final String id;
@@ -254,21 +239,13 @@ class _$ArticleImpl extends _Article {
   final String? url;
   @override
   final String content;
-  final List<Quiz> _quizzes;
-  @override
-  List<Quiz> get quizzes {
-    if (_quizzes is EqualUnmodifiableListView) return _quizzes;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_quizzes);
-  }
-
   @override
   @JsonKey()
   final bool isPublic;
 
   @override
   String toString() {
-    return 'Article(id: $id, createdBy: $createdBy, createdAt: $createdAt, title: $title, description: $description, isBookmarked: $isBookmarked, type: $type, url: $url, content: $content, quizzes: $quizzes, isPublic: $isPublic)';
+    return 'Article(id: $id, createdBy: $createdBy, createdAt: $createdAt, title: $title, description: $description, isBookmarked: $isBookmarked, type: $type, url: $url, content: $content, isPublic: $isPublic)';
   }
 
   @override
@@ -289,25 +266,13 @@ class _$ArticleImpl extends _Article {
             (identical(other.type, type) || other.type == type) &&
             (identical(other.url, url) || other.url == url) &&
             (identical(other.content, content) || other.content == content) &&
-            const DeepCollectionEquality().equals(other._quizzes, _quizzes) &&
             (identical(other.isPublic, isPublic) ||
                 other.isPublic == isPublic));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      createdBy,
-      createdAt,
-      title,
-      description,
-      isBookmarked,
-      type,
-      url,
-      content,
-      const DeepCollectionEquality().hash(_quizzes),
-      isPublic);
+  int get hashCode => Object.hash(runtimeType, id, createdBy, createdAt, title,
+      description, isBookmarked, type, url, content, isPublic);
 
   @JsonKey(ignore: true)
   @override
@@ -327,7 +292,6 @@ abstract class _Article extends Article {
       required final ArticleType type,
       required final String? url,
       required final String content,
-      required final List<Quiz> quizzes,
       final bool isPublic}) = _$ArticleImpl;
   const _Article._() : super._();
 
@@ -349,8 +313,6 @@ abstract class _Article extends Article {
   String? get url;
   @override
   String get content;
-  @override
-  List<Quiz> get quizzes;
   @override
   bool get isPublic;
   @override

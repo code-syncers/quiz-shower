@@ -19,7 +19,6 @@ mixin _$User {
   String get userId => throw _privateConstructorUsedError;
   String get displayName => throw _privateConstructorUsedError;
   int get exp => throw _privateConstructorUsedError;
-  List<History> get histories => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $UserCopyWith<User> get copyWith => throw _privateConstructorUsedError;
@@ -30,8 +29,7 @@ abstract class $UserCopyWith<$Res> {
   factory $UserCopyWith(User value, $Res Function(User) then) =
       _$UserCopyWithImpl<$Res, User>;
   @useResult
-  $Res call(
-      {String userId, String displayName, int exp, List<History> histories});
+  $Res call({String userId, String displayName, int exp});
 }
 
 /// @nodoc
@@ -50,7 +48,6 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? userId = null,
     Object? displayName = null,
     Object? exp = null,
-    Object? histories = null,
   }) {
     return _then(_value.copyWith(
       userId: null == userId
@@ -65,10 +62,6 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.exp
           : exp // ignore: cast_nullable_to_non_nullable
               as int,
-      histories: null == histories
-          ? _value.histories
-          : histories // ignore: cast_nullable_to_non_nullable
-              as List<History>,
     ) as $Val);
   }
 }
@@ -80,8 +73,7 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
       __$$UserImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String userId, String displayName, int exp, List<History> histories});
+  $Res call({String userId, String displayName, int exp});
 }
 
 /// @nodoc
@@ -97,7 +89,6 @@ class __$$UserImplCopyWithImpl<$Res>
     Object? userId = null,
     Object? displayName = null,
     Object? exp = null,
-    Object? histories = null,
   }) {
     return _then(_$UserImpl(
       userId: null == userId
@@ -112,10 +103,6 @@ class __$$UserImplCopyWithImpl<$Res>
           ? _value.exp
           : exp // ignore: cast_nullable_to_non_nullable
               as int,
-      histories: null == histories
-          ? _value._histories
-          : histories // ignore: cast_nullable_to_non_nullable
-              as List<History>,
     ));
   }
 }
@@ -124,12 +111,8 @@ class __$$UserImplCopyWithImpl<$Res>
 
 class _$UserImpl extends _User {
   const _$UserImpl(
-      {required this.userId,
-      required this.displayName,
-      required this.exp,
-      required final List<History> histories})
-      : _histories = histories,
-        super._();
+      {required this.userId, required this.displayName, required this.exp})
+      : super._();
 
   @override
   final String userId;
@@ -137,17 +120,10 @@ class _$UserImpl extends _User {
   final String displayName;
   @override
   final int exp;
-  final List<History> _histories;
-  @override
-  List<History> get histories {
-    if (_histories is EqualUnmodifiableListView) return _histories;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_histories);
-  }
 
   @override
   String toString() {
-    return 'User(userId: $userId, displayName: $displayName, exp: $exp, histories: $histories)';
+    return 'User(userId: $userId, displayName: $displayName, exp: $exp)';
   }
 
   @override
@@ -158,14 +134,11 @@ class _$UserImpl extends _User {
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.displayName, displayName) ||
                 other.displayName == displayName) &&
-            (identical(other.exp, exp) || other.exp == exp) &&
-            const DeepCollectionEquality()
-                .equals(other._histories, _histories));
+            (identical(other.exp, exp) || other.exp == exp));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, userId, displayName, exp,
-      const DeepCollectionEquality().hash(_histories));
+  int get hashCode => Object.hash(runtimeType, userId, displayName, exp);
 
   @JsonKey(ignore: true)
   @override
@@ -178,8 +151,7 @@ abstract class _User extends User {
   const factory _User(
       {required final String userId,
       required final String displayName,
-      required final int exp,
-      required final List<History> histories}) = _$UserImpl;
+      required final int exp}) = _$UserImpl;
   const _User._() : super._();
 
   @override
@@ -188,8 +160,6 @@ abstract class _User extends User {
   String get displayName;
   @override
   int get exp;
-  @override
-  List<History> get histories;
   @override
   @JsonKey(ignore: true)
   _$$UserImplCopyWith<_$UserImpl> get copyWith =>

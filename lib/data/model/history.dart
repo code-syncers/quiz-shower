@@ -11,17 +11,15 @@ class History with _$History {
     required String id,
     required String articleId,
     required String? taisenId,
-    required List<HistoryQuiz> historyQuizzes,
     @Default(false) bool isTaisen,
     @Default(false) bool isPublic,
   }) = _History;
 
   static History mock() {
-    return History(
+    return const History(
       id: '1',
       articleId: '1',
       taisenId: null,
-      historyQuizzes: [HistoryQuiz.mock(), HistoryQuiz.mock()],
       isTaisen: false,
       isPublic: true,
     );

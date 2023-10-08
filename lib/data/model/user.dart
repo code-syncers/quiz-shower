@@ -11,15 +11,13 @@ class User with _$User {
     required String userId,
     required String displayName,
     required int exp,
-    required List<History> histories,
   }) = _User;
 
   static User mock() {
-    return User(
+    return const User(
       userId: '123456',
       displayName: 'John Doe',
       exp: 1000,
-      histories: [History.mock(), History.mock()],
     );
   }
 }

@@ -19,7 +19,6 @@ mixin _$History {
   String get id => throw _privateConstructorUsedError;
   String get articleId => throw _privateConstructorUsedError;
   String? get taisenId => throw _privateConstructorUsedError;
-  List<HistoryQuiz> get historyQuizzes => throw _privateConstructorUsedError;
   bool get isTaisen => throw _privateConstructorUsedError;
   bool get isPublic => throw _privateConstructorUsedError;
 
@@ -36,7 +35,6 @@ abstract class $HistoryCopyWith<$Res> {
       {String id,
       String articleId,
       String? taisenId,
-      List<HistoryQuiz> historyQuizzes,
       bool isTaisen,
       bool isPublic});
 }
@@ -57,7 +55,6 @@ class _$HistoryCopyWithImpl<$Res, $Val extends History>
     Object? id = null,
     Object? articleId = null,
     Object? taisenId = freezed,
-    Object? historyQuizzes = null,
     Object? isTaisen = null,
     Object? isPublic = null,
   }) {
@@ -74,10 +71,6 @@ class _$HistoryCopyWithImpl<$Res, $Val extends History>
           ? _value.taisenId
           : taisenId // ignore: cast_nullable_to_non_nullable
               as String?,
-      historyQuizzes: null == historyQuizzes
-          ? _value.historyQuizzes
-          : historyQuizzes // ignore: cast_nullable_to_non_nullable
-              as List<HistoryQuiz>,
       isTaisen: null == isTaisen
           ? _value.isTaisen
           : isTaisen // ignore: cast_nullable_to_non_nullable
@@ -101,7 +94,6 @@ abstract class _$$HistoryImplCopyWith<$Res> implements $HistoryCopyWith<$Res> {
       {String id,
       String articleId,
       String? taisenId,
-      List<HistoryQuiz> historyQuizzes,
       bool isTaisen,
       bool isPublic});
 }
@@ -120,7 +112,6 @@ class __$$HistoryImplCopyWithImpl<$Res>
     Object? id = null,
     Object? articleId = null,
     Object? taisenId = freezed,
-    Object? historyQuizzes = null,
     Object? isTaisen = null,
     Object? isPublic = null,
   }) {
@@ -137,10 +128,6 @@ class __$$HistoryImplCopyWithImpl<$Res>
           ? _value.taisenId
           : taisenId // ignore: cast_nullable_to_non_nullable
               as String?,
-      historyQuizzes: null == historyQuizzes
-          ? _value._historyQuizzes
-          : historyQuizzes // ignore: cast_nullable_to_non_nullable
-              as List<HistoryQuiz>,
       isTaisen: null == isTaisen
           ? _value.isTaisen
           : isTaisen // ignore: cast_nullable_to_non_nullable
@@ -160,11 +147,9 @@ class _$HistoryImpl extends _History {
       {required this.id,
       required this.articleId,
       required this.taisenId,
-      required final List<HistoryQuiz> historyQuizzes,
       this.isTaisen = false,
       this.isPublic = false})
-      : _historyQuizzes = historyQuizzes,
-        super._();
+      : super._();
 
   @override
   final String id;
@@ -172,14 +157,6 @@ class _$HistoryImpl extends _History {
   final String articleId;
   @override
   final String? taisenId;
-  final List<HistoryQuiz> _historyQuizzes;
-  @override
-  List<HistoryQuiz> get historyQuizzes {
-    if (_historyQuizzes is EqualUnmodifiableListView) return _historyQuizzes;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_historyQuizzes);
-  }
-
   @override
   @JsonKey()
   final bool isTaisen;
@@ -189,7 +166,7 @@ class _$HistoryImpl extends _History {
 
   @override
   String toString() {
-    return 'History(id: $id, articleId: $articleId, taisenId: $taisenId, historyQuizzes: $historyQuizzes, isTaisen: $isTaisen, isPublic: $isPublic)';
+    return 'History(id: $id, articleId: $articleId, taisenId: $taisenId, isTaisen: $isTaisen, isPublic: $isPublic)';
   }
 
   @override
@@ -202,8 +179,6 @@ class _$HistoryImpl extends _History {
                 other.articleId == articleId) &&
             (identical(other.taisenId, taisenId) ||
                 other.taisenId == taisenId) &&
-            const DeepCollectionEquality()
-                .equals(other._historyQuizzes, _historyQuizzes) &&
             (identical(other.isTaisen, isTaisen) ||
                 other.isTaisen == isTaisen) &&
             (identical(other.isPublic, isPublic) ||
@@ -211,8 +186,8 @@ class _$HistoryImpl extends _History {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, articleId, taisenId,
-      const DeepCollectionEquality().hash(_historyQuizzes), isTaisen, isPublic);
+  int get hashCode =>
+      Object.hash(runtimeType, id, articleId, taisenId, isTaisen, isPublic);
 
   @JsonKey(ignore: true)
   @override
@@ -226,7 +201,6 @@ abstract class _History extends History {
       {required final String id,
       required final String articleId,
       required final String? taisenId,
-      required final List<HistoryQuiz> historyQuizzes,
       final bool isTaisen,
       final bool isPublic}) = _$HistoryImpl;
   const _History._() : super._();
@@ -237,8 +211,6 @@ abstract class _History extends History {
   String get articleId;
   @override
   String? get taisenId;
-  @override
-  List<HistoryQuiz> get historyQuizzes;
   @override
   bool get isTaisen;
   @override
