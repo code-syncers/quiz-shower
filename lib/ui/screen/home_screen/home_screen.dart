@@ -1,11 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart' hide EmailAuthProvider;
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:quiz_shower/ui/screen/article_screen/article_screen.dart';
-import 'package:quiz_shower/ui/screen/quiz_screen/quiz_screen.dart';
-import 'package:quiz_shower/ui/screen/user_screen/user_screen.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:quiz_shower/data/model/article.dart';
+import 'package:quiz_shower/ui/screen/home_screen/component/preview_card.dart';
+import 'package:quiz_shower/ui/screen/home_screen/hook/use_home_screen_state.dart';
 
-class QuizShowerScaffold extends StatefulWidget {
+class QuizShowerScaffold extends StatefulHookWidget {
   const QuizShowerScaffold({super.key});
 
   @override
@@ -13,15 +14,8 @@ class QuizShowerScaffold extends StatefulWidget {
 }
 
 class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
-  var _currentPageIndex = 0;
-  String _currentUserEmail = '';
   bool _isUserLoggedIn = false;
-
-  final _pages = <Widget>[
-    const ArticleScreen(),
-    const QuizScreen(),
-    const UserScreen(),
-  ];
+  String _currentUserEmail = '';
 
   final GlobalKey<ScaffoldMessengerState> _scaffoldMessengerKey =
       GlobalKey<ScaffoldMessengerState>();
@@ -54,6 +48,7 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
 
   @override
   Widget build(BuildContext context) {
+    HomeScreenState state = useHomeScreenState(isQuizMode: false);
     return ScaffoldMessenger(
       key: _scaffoldMessengerKey,
       child: Scaffold(
@@ -175,30 +170,31 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
             ],
           ),
         ),
-        body: _pages[_currentPageIndex],
-        bottomNavigationBar: NavigationBar(
-          onDestinationSelected: (int index) {
-            setState(() {
-              _currentPageIndex = index;
-            });
-          },
-          selectedIndex: _currentPageIndex,
-          labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
-          destinations: const <Widget>[
-            NavigationDestination(
-              icon: Icon(Icons.description_outlined),
-              selectedIcon: Icon(Icons.description_rounded),
-              label: '記事',
+        body: Stack(
+          alignment: AlignmentDirectional.topCenter,
+          children: [
+            ListView.separated(
+              padding: const EdgeInsets.fromLTRB(8, 8, 8, 80),
+              itemCount: 50,
+              itemBuilder: (BuildContext context, int index) {
+                return PreviewCard(
+                  article: Article.mock(),
+                  isQuizMode: state.isQuizMode,
+                );
+              },
+              separatorBuilder: (BuildContext context, int index) =>
+                  const SizedBox(height: 8),
             ),
-            NavigationDestination(
-              icon: Icon(Icons.quiz_outlined),
-              selectedIcon: Icon(Icons.quiz_rounded),
-              label: 'クイズ',
-            ),
-            NavigationDestination(
-              icon: Icon(Icons.account_circle_outlined),
-              selectedIcon: Icon(Icons.account_circle_rounded),
-              label: 'ユーザー',
+            SafeArea(
+              child: Align(
+                alignment: AlignmentDirectional.bottomCenter,
+                child: Switch(
+                  value: state.isQuizMode,
+                  onChanged: (value) {
+                    state.toggleQuizMode();
+                  },
+                ),
+              ),
             ),
           ],
         ),
