@@ -16,10 +16,16 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Article {
+  String get id => throw _privateConstructorUsedError;
+  String get createdBy => throw _privateConstructorUsedError;
+  DateTime get createdAt => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
+  bool get isBookmarked => throw _privateConstructorUsedError;
+  ArticleType get type => throw _privateConstructorUsedError;
+  String? get url => throw _privateConstructorUsedError;
   String get content => throw _privateConstructorUsedError;
-  String get url => throw _privateConstructorUsedError;
+  bool get isPublic => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ArticleCopyWith<Article> get copyWith => throw _privateConstructorUsedError;
@@ -30,7 +36,17 @@ abstract class $ArticleCopyWith<$Res> {
   factory $ArticleCopyWith(Article value, $Res Function(Article) then) =
       _$ArticleCopyWithImpl<$Res, Article>;
   @useResult
-  $Res call({String title, String description, String content, String url});
+  $Res call(
+      {String id,
+      String createdBy,
+      DateTime createdAt,
+      String title,
+      String description,
+      bool isBookmarked,
+      ArticleType type,
+      String? url,
+      String content,
+      bool isPublic});
 }
 
 /// @nodoc
@@ -46,12 +62,30 @@ class _$ArticleCopyWithImpl<$Res, $Val extends Article>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
+    Object? createdBy = null,
+    Object? createdAt = null,
     Object? title = null,
     Object? description = null,
+    Object? isBookmarked = null,
+    Object? type = null,
+    Object? url = freezed,
     Object? content = null,
-    Object? url = null,
+    Object? isPublic = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdBy: null == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -60,14 +94,26 @@ class _$ArticleCopyWithImpl<$Res, $Val extends Article>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      isBookmarked: null == isBookmarked
+          ? _value.isBookmarked
+          : isBookmarked // ignore: cast_nullable_to_non_nullable
+              as bool,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as ArticleType,
+      url: freezed == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String?,
       content: null == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
               as String,
-      url: null == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String,
+      isPublic: null == isPublic
+          ? _value.isPublic
+          : isPublic // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -79,7 +125,17 @@ abstract class _$$ArticleImplCopyWith<$Res> implements $ArticleCopyWith<$Res> {
       __$$ArticleImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String title, String description, String content, String url});
+  $Res call(
+      {String id,
+      String createdBy,
+      DateTime createdAt,
+      String title,
+      String description,
+      bool isBookmarked,
+      ArticleType type,
+      String? url,
+      String content,
+      bool isPublic});
 }
 
 /// @nodoc
@@ -93,12 +149,30 @@ class __$$ArticleImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
+    Object? createdBy = null,
+    Object? createdAt = null,
     Object? title = null,
     Object? description = null,
+    Object? isBookmarked = null,
+    Object? type = null,
+    Object? url = freezed,
     Object? content = null,
-    Object? url = null,
+    Object? isPublic = null,
   }) {
     return _then(_$ArticleImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdBy: null == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -107,14 +181,26 @@ class __$$ArticleImplCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      isBookmarked: null == isBookmarked
+          ? _value.isBookmarked
+          : isBookmarked // ignore: cast_nullable_to_non_nullable
+              as bool,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as ArticleType,
+      url: freezed == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String?,
       content: null == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
               as String,
-      url: null == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String,
+      isPublic: null == isPublic
+          ? _value.isPublic
+          : isPublic // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -123,24 +209,43 @@ class __$$ArticleImplCopyWithImpl<$Res>
 
 class _$ArticleImpl extends _Article {
   const _$ArticleImpl(
-      {required this.title,
+      {required this.id,
+      required this.createdBy,
+      required this.createdAt,
+      required this.title,
       required this.description,
+      required this.isBookmarked,
+      required this.type,
+      required this.url,
       required this.content,
-      required this.url})
+      this.isPublic = false})
       : super._();
 
+  @override
+  final String id;
+  @override
+  final String createdBy;
+  @override
+  final DateTime createdAt;
   @override
   final String title;
   @override
   final String description;
   @override
+  final bool isBookmarked;
+  @override
+  final ArticleType type;
+  @override
+  final String? url;
+  @override
   final String content;
   @override
-  final String url;
+  @JsonKey()
+  final bool isPublic;
 
   @override
   String toString() {
-    return 'Article(title: $title, description: $description, content: $content, url: $url)';
+    return 'Article(id: $id, createdBy: $createdBy, createdAt: $createdAt, title: $title, description: $description, isBookmarked: $isBookmarked, type: $type, url: $url, content: $content, isPublic: $isPublic)';
   }
 
   @override
@@ -148,16 +253,26 @@ class _$ArticleImpl extends _Article {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ArticleImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.createdBy, createdBy) ||
+                other.createdBy == createdBy) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
                 other.description == description) &&
+            (identical(other.isBookmarked, isBookmarked) ||
+                other.isBookmarked == isBookmarked) &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.url, url) || other.url == url) &&
             (identical(other.content, content) || other.content == content) &&
-            (identical(other.url, url) || other.url == url));
+            (identical(other.isPublic, isPublic) ||
+                other.isPublic == isPublic));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, title, description, content, url);
+  int get hashCode => Object.hash(runtimeType, id, createdBy, createdAt, title,
+      description, isBookmarked, type, url, content, isPublic);
 
   @JsonKey(ignore: true)
   @override
@@ -168,20 +283,38 @@ class _$ArticleImpl extends _Article {
 
 abstract class _Article extends Article {
   const factory _Article(
-      {required final String title,
+      {required final String id,
+      required final String createdBy,
+      required final DateTime createdAt,
+      required final String title,
       required final String description,
+      required final bool isBookmarked,
+      required final ArticleType type,
+      required final String? url,
       required final String content,
-      required final String url}) = _$ArticleImpl;
+      final bool isPublic}) = _$ArticleImpl;
   const _Article._() : super._();
 
+  @override
+  String get id;
+  @override
+  String get createdBy;
+  @override
+  DateTime get createdAt;
   @override
   String get title;
   @override
   String get description;
   @override
+  bool get isBookmarked;
+  @override
+  ArticleType get type;
+  @override
+  String? get url;
+  @override
   String get content;
   @override
-  String get url;
+  bool get isPublic;
   @override
   @JsonKey(ignore: true)
   _$$ArticleImplCopyWith<_$ArticleImpl> get copyWith =>
