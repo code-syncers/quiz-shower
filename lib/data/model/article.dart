@@ -36,6 +36,5 @@ class Article with _$Article {
 
 enum ArticleType {
   url,
-  content,
-  pdf,
+  manual,
 }
