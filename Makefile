@@ -21,7 +21,10 @@ flutter_clean:
 flutter_deps: flutter_clean
 	flutter pub get
 
-flutter_format: flutter_deps
+build_runner: flutter_deps
+	flutter pub run build_runner build --delete-conflicting-outputs
+
+flutter_format: build_runner
 	dart format lib test --set-exit-if-changed
 
 flutter_analyze: flutter_format
@@ -30,4 +33,4 @@ flutter_analyze: flutter_format
 flutter_run: flutter_analyze
 	flutter run
 
-run: flutter_clean flutter_deps flutter_format flutter_analyze flutter_run
+run: flutter_clean flutter_deps build_runner flutter_format flutter_analyze flutter_run
