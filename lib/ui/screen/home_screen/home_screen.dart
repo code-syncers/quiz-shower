@@ -108,6 +108,22 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
                                 ),
                               );
                             }),
+                            AuthStateChangeAction<UserCreated>(
+                                (context, state) {
+                              _scaffoldMessengerKey.currentState?.showSnackBar(
+                                const SnackBar(
+                                  content: Text('ログインしました'),
+                                  duration: Duration(seconds: 2),
+                                ),
+                              );
+                              if (!mounted) return;
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      const QuizShowerScaffold(),
+                                ),
+                              );
+                            }),
                           ],
                           providers: [
                             EmailAuthProvider(),
