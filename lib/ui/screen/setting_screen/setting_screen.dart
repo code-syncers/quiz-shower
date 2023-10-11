@@ -8,6 +8,8 @@ class SettingScreen extends StatefulWidget {
 }
 
 class SettingScreenState extends State<SettingScreen> {
+  ThemeMode _selectedValue = ThemeMode.light;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,19 +48,92 @@ class SettingScreenState extends State<SettingScreen> {
               textAlign: TextAlign.left,
             ),
             const SizedBox(height: 16),
-            const Row(
-              children: [
-                Icon(Icons.dark_mode_rounded, size: 28),
-                SizedBox(width: 16),
-                Text(
-                  'アプリのテーマ',
-                  style: TextStyle(
-                    fontSize: 16,
-                  ),
+            GestureDetector(
+              onTap: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: const Row(
+                        children: [
+                          Icon(Icons.dark_mode_rounded, size: 28),
+                          SizedBox(width: 16),
+                          Text('アプリのテーマ'),
+                        ],
+                      ),
+                      content: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            const Divider(thickness: 1),
+                            RadioListTile<ThemeMode>(
+                              groupValue: _selectedValue,
+                              value: ThemeMode.light, // このRadioListTileの値
+                              onChanged: (ThemeMode? value) {
+                                setState(() {
+                                  _selectedValue = value!; // 選択値を更新
+                                });
+                              },
+                              title: const Text('ライトモード'), // ラベル
+                            ),
+                            RadioListTile<ThemeMode>(
+                              groupValue: _selectedValue,
+                              value: ThemeMode.dark,
+                              onChanged: (ThemeMode? value) {
+                                setState(() {
+                                  _selectedValue = value!;
+                                });
+                              },
+                              title: const Text('ダークモード'),
+                            ),
+                            RadioListTile<ThemeMode>(
+                              groupValue: _selectedValue,
+                              value: ThemeMode.system,
+                              onChanged: (ThemeMode? value) {
+                                setState(() {
+                                  _selectedValue = value!;
+                                });
+                              },
+                              title: const Text('自動で切り替え'),
+                            ),
+                            const Divider(thickness: 1),
+                          ],
+                        ),
+                      ),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: const Text('キャンセル'),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: const Text('決定'),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
+              child: Container(
+                color: Colors.transparent,
+                child: const Row(
+                  children: [
+                    Icon(Icons.dark_mode_rounded, size: 28),
+                    SizedBox(width: 16),
+                    Text(
+                      'アプリのテーマ',
+                      style: TextStyle(
+                        fontSize: 16,
+                      ),
+                    ),
+                    Spacer(),
+                    Text('現在のテーマ'),
+                  ],
                 ),
-                Spacer(),
-                Text('現在のテーマ'),
-              ],
+              ),
             ),
             const SizedBox(height: 16),
             const Row(
