@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_shower/ui/screen/setting_screen/add_auth_screen.dart';
+import 'package:quiz_shower/ui/screen/setting_screen/change_email_screen.dart';
+import 'package:quiz_shower/ui/screen/setting_screen/change_password_screen.dart';
 
 class SettingScreen extends StatefulWidget {
   const SettingScreen({Key? key}) : super(key: key);
@@ -67,13 +70,13 @@ class SettingScreenState extends State<SettingScreen> {
                             const Divider(thickness: 1),
                             RadioListTile<ThemeMode>(
                               groupValue: _selectedValue,
-                              value: ThemeMode.light, // このRadioListTileの値
+                              value: ThemeMode.light,
                               onChanged: (ThemeMode? value) {
                                 setState(() {
-                                  _selectedValue = value!; // 選択値を更新
+                                  _selectedValue = value!;
                                 });
                               },
-                              title: const Text('ライトモード'), // ラベル
+                              title: const Text('ライトモード'),
                             ),
                             RadioListTile<ThemeMode>(
                               groupValue: _selectedValue,
@@ -136,30 +139,42 @@ class SettingScreenState extends State<SettingScreen> {
               ),
             ),
             const SizedBox(height: 16),
-            const Row(
-              children: [
-                Icon(Icons.settings_rounded, size: 28),
-                SizedBox(width: 16),
-                Text(
-                  '表示形式',
-                  style: TextStyle(fontSize: 16),
+            GestureDetector(
+              onTap: () {},
+              child: Container(
+                color: Colors.transparent,
+                child: const Row(
+                  children: [
+                    Icon(Icons.settings_rounded, size: 28),
+                    SizedBox(width: 16),
+                    Text(
+                      '表示形式',
+                      style: TextStyle(fontSize: 16),
+                    ),
+                    Spacer(),
+                    Text('記事orクイズ'),
+                  ],
                 ),
-                Spacer(),
-                Text('記事orクイズ'),
-              ],
+              ),
             ),
             const SizedBox(height: 16),
-            const Row(
-              children: [
-                Icon(Icons.notifications_rounded, size: 28),
-                SizedBox(width: 16),
-                Text(
-                  '通知の設定',
-                  style: TextStyle(fontSize: 16),
+            GestureDetector(
+              onTap: () {},
+              child: Container(
+                color: Colors.transparent,
+                child: const Row(
+                  children: [
+                    Icon(Icons.notifications_rounded, size: 28),
+                    SizedBox(width: 16),
+                    Text(
+                      '通知の設定',
+                      style: TextStyle(fontSize: 16),
+                    ),
+                    Spacer(),
+                    Text('現在の通知設定'),
+                  ],
                 ),
-                Spacer(),
-                Text('現在の通知設定'),
-              ],
+              ),
             ),
             const SizedBox(height: 16),
             const Divider(thickness: 1),
@@ -173,75 +188,126 @@ class SettingScreenState extends State<SettingScreen> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Icon(Icons.mail_rounded, size: 28),
-                    SizedBox(width: 16),
-                    Text(
-                      'メールアドレスを変更',
-                      style: TextStyle(fontSize: 16),
-                    ),
-                    Spacer(),
-                    Icon(Icons.navigate_next_rounded, size: 24),
-                  ],
-                ),
-                const SizedBox(height: 16),
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Icon(Icons.lock_rounded, size: 28),
-                    SizedBox(width: 16),
-                    Text(
-                      'パスワードを変更',
-                      style: TextStyle(fontSize: 16),
-                    ),
-                    Spacer(),
-                    Icon(Icons.navigate_next_rounded, size: 24),
-                  ],
-                ),
-                const SizedBox(height: 16),
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Icon(Icons.verified_user_rounded, size: 30),
-                    SizedBox(width: 16),
-                    Text('認証方法を追加', style: TextStyle(fontSize: 16)),
-                    Spacer(),
-                    Icon(Icons.navigate_next_rounded, size: 24),
-                  ],
-                ),
-                const SizedBox(height: 16),
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Icon(Icons.logout_rounded, size: 30),
-                    SizedBox(width: 16),
-                    Text('ログアウト', style: TextStyle(fontSize: 16)),
-                    Spacer(),
-                    Icon(Icons.navigate_next_rounded, size: 24),
-                  ],
-                ),
-                const SizedBox(height: 16),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Icon(
-                      Icons.person_off_rounded,
-                      size: 28,
-                      color: Theme.of(context).colorScheme.error,
-                    ),
-                    const SizedBox(width: 16),
-                    Text(
-                      'アカウントを削除',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Theme.of(context).colorScheme.error, // ここで色を変更
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const ChangeEmailScreen(),
                       ),
+                    );
+                  },
+                  child: Container(
+                    color: Colors.transparent,
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Icon(Icons.mail_rounded, size: 28),
+                        SizedBox(width: 16),
+                        Text(
+                          'メールアドレスを変更',
+                          style: TextStyle(fontSize: 16),
+                        ),
+                        Spacer(),
+                        Icon(Icons.navigate_next_rounded, size: 24),
+                      ],
                     ),
-                    const Spacer(),
-                    const Icon(Icons.navigate_next_rounded, size: 24),
-                  ],
+                  ),
+                ),
+                const SizedBox(height: 16),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const ChangePasswordScreen(),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    color: Colors.transparent,
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Icon(Icons.lock_rounded, size: 28),
+                        SizedBox(width: 16),
+                        Text(
+                          'パスワードを変更',
+                          style: TextStyle(fontSize: 16),
+                        ),
+                        Spacer(),
+                        Icon(Icons.navigate_next_rounded, size: 24),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const AddAuthScreen(),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    color: Colors.transparent,
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Icon(Icons.verified_user_rounded, size: 30),
+                        SizedBox(width: 16),
+                        Text('認証方法を追加', style: TextStyle(fontSize: 16)),
+                        Spacer(),
+                        Icon(Icons.navigate_next_rounded, size: 24),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                GestureDetector(
+                  onTap: () {},
+                  child: Container(
+                    color: Colors.transparent,
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Icon(Icons.logout_rounded, size: 30),
+                        SizedBox(width: 16),
+                        Text('ログアウト', style: TextStyle(fontSize: 16)),
+                        Spacer(),
+                        Icon(Icons.navigate_next_rounded, size: 24),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                GestureDetector(
+                  onTap: () {},
+                  child: Container(
+                    color: Colors.transparent,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Icon(
+                          Icons.person_off_rounded,
+                          size: 28,
+                          color: Theme.of(context).colorScheme.error,
+                        ),
+                        const SizedBox(width: 16),
+                        Text(
+                          'アカウントを削除',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Theme.of(context).colorScheme.error,
+                          ),
+                        ),
+                        const Spacer(),
+                        const Icon(Icons.navigate_next_rounded, size: 24),
+                      ],
+                    ),
+                  ),
                 ),
               ],
             ),
