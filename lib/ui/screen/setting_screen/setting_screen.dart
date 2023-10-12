@@ -396,6 +396,7 @@ class SettingScreenState extends State<SettingScreen> {
                           content: const SingleChildScrollView(
                             child: Column(
                               children: [
+                                SizedBox(height: 16),
                                 Text('本当にログアウトしますか？'),
                               ],
                             ),
@@ -449,6 +450,7 @@ class SettingScreenState extends State<SettingScreen> {
                           content: const SingleChildScrollView(
                             child: Column(
                               children: [
+                                SizedBox(height: 16),
                                 Text('本当にアカウントを削除しますか？'),
                               ],
                             ),
