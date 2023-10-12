@@ -140,7 +140,64 @@ class SettingScreenState extends State<SettingScreen> {
             ),
             const SizedBox(height: 16),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: const Row(
+                        children: [
+                          Icon(Icons.settings_rounded, size: 28),
+                          SizedBox(width: 16),
+                          Text('表示形式'),
+                        ],
+                      ),
+                      content: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            const Divider(thickness: 1),
+                            RadioListTile<ThemeMode>(
+                              groupValue: _selectedValue,
+                              value: ThemeMode.light,
+                              onChanged: (ThemeMode? value) {
+                                setState(() {
+                                  _selectedValue = value!;
+                                });
+                              },
+                              title: const Text('記事モード'),
+                            ),
+                            RadioListTile<ThemeMode>(
+                              groupValue: _selectedValue,
+                              value: ThemeMode.dark,
+                              onChanged: (ThemeMode? value) {
+                                setState(() {
+                                  _selectedValue = value!;
+                                });
+                              },
+                              title: const Text('クイズモード'),
+                            ),
+                            const Divider(thickness: 1),
+                          ],
+                        ),
+                      ),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: const Text('キャンセル'),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: const Text('決定'),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
               child: Container(
                 color: Colors.transparent,
                 child: const Row(
@@ -159,7 +216,64 @@ class SettingScreenState extends State<SettingScreen> {
             ),
             const SizedBox(height: 16),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: const Row(
+                        children: [
+                          Icon(Icons.notifications_rounded, size: 28),
+                          SizedBox(width: 16),
+                          Text('通知の設定'),
+                        ],
+                      ),
+                      content: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            const Divider(thickness: 1),
+                            RadioListTile<ThemeMode>(
+                              groupValue: _selectedValue,
+                              value: ThemeMode.light,
+                              onChanged: (ThemeMode? value) {
+                                setState(() {
+                                  _selectedValue = value!;
+                                });
+                              },
+                              title: const Text('1日1回'),
+                            ),
+                            RadioListTile<ThemeMode>(
+                              groupValue: _selectedValue,
+                              value: ThemeMode.dark,
+                              onChanged: (ThemeMode? value) {
+                                setState(() {
+                                  _selectedValue = value!;
+                                });
+                              },
+                              title: const Text('1日2回'),
+                            ),
+                            const Divider(thickness: 1),
+                          ],
+                        ),
+                      ),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: const Text('キャンセル'),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: const Text('決定'),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
               child: Container(
                 color: Colors.transparent,
                 child: const Row(
@@ -267,7 +381,43 @@ class SettingScreenState extends State<SettingScreen> {
                 ),
                 const SizedBox(height: 16),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: const Row(
+                            children: [
+                              Icon(Icons.logout_rounded, size: 28),
+                              SizedBox(width: 16),
+                              Text('ログアウト'),
+                            ],
+                          ),
+                          content: const SingleChildScrollView(
+                            child: Column(
+                              children: [
+                                Text('本当にログアウトしますか？'),
+                              ],
+                            ),
+                          ),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: const Text('キャンセル'),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: const Text('ログアウト'),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  },
                   child: Container(
                     color: Colors.transparent,
                     child: const Row(
@@ -284,7 +434,48 @@ class SettingScreenState extends State<SettingScreen> {
                 ),
                 const SizedBox(height: 16),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: const Row(
+                            children: [
+                              Icon(Icons.person_off_rounded, size: 28),
+                              SizedBox(width: 16),
+                              Text('アカウントを削除'),
+                            ],
+                          ),
+                          content: const SingleChildScrollView(
+                            child: Column(
+                              children: [
+                                Text('本当にアカウントを削除しますか？'),
+                              ],
+                            ),
+                          ),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: const Text('キャンセル'),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: Text(
+                                'アカウントを削除',
+                                style: TextStyle(
+                                  color: Theme.of(context).colorScheme.error,
+                                ),
+                              ),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  },
                   child: Container(
                     color: Colors.transparent,
                     child: Row(
