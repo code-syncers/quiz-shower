@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:quiz_shower/data/model/quiz.dart';
@@ -21,12 +20,6 @@ class QuizScreen extends HookWidget {
       currentQuizNumber: 0,
       selectedOptions: <int>[],
     );
-    final currentQuiz = quizList[state.currentQuizNumber];
-
-    bool checkAnswer() {
-      final currentQuiz = quizList[state.currentQuizNumber];
-      return listEquals(state.selectedOptions, currentQuiz.answers);
-    }
 
     return Scaffold(
       appBar: AppBar(
@@ -45,12 +38,15 @@ class QuizScreen extends HookWidget {
               height: 8,
             ),
             Text(
-              currentQuiz.statement,
+              state.quizList[state.currentQuizNumber].statement,
               style: const TextStyle(fontSize: 20),
             ),
             const SizedBox(height: 16),
             Column(
-              children: currentQuiz.options.asMap().entries.map(
+              children: state.quizList[state.currentQuizNumber].options
+                  .asMap()
+                  .entries
+                  .map(
                 (entry) {
                   final index = entry.key;
                   //final option = entry.value;
@@ -72,8 +68,10 @@ class QuizScreen extends HookWidget {
                 showDialog(
                   context: context,
                   builder: (context) => AlertDialog(
-                    title: Text(checkAnswer() ? '正解' : '不正解'),
-                    content: Text(currentQuiz.explanation),
+                    title: Text(state.checkAnswer() ? '正解' : '不正解'),
+                    content: Text(
+                      state.quizList[state.currentQuizNumber].explanation,
+                    ),
                     actions: [
                       TextButton(
                         onPressed: () {

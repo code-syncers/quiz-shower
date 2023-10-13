@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:quiz_shower/data/model/quiz.dart';
@@ -9,10 +10,12 @@ class QuizScreenState with _$QuizScreenState {
   const QuizScreenState._();
 
   const factory QuizScreenState({
+    required List<Quiz> quizList,
     required int currentQuizNumber,
     required List<int> selectedOptions,
     required bool Function(int) getIsSelected,
     required void Function(int) changeSelected,
+    required bool Function() checkAnswer,
     required void Function() goToNextQuiz,
   }) = _QuizScreenState;
 }
@@ -36,6 +39,11 @@ QuizScreenState useQuizScreenState({
     selectedOptionsState.value.sort(((a, b) => a.compareTo(b)));
   }
 
+  bool checkAnswer() {
+    final currentQuiz = quizList[currentQuizNumberState.value];
+    return listEquals(selectedOptionsState.value, currentQuiz.answers);
+  }
+
   void goToNextQuiz() {
     if (currentQuizNumberState.value < quizList.length - 1) {
       currentQuizNumberState.value++;
@@ -44,10 +52,12 @@ QuizScreenState useQuizScreenState({
   }
 
   return QuizScreenState(
+    quizList: quizList,
     currentQuizNumber: currentQuizNumberState.value,
     selectedOptions: selectedOptionsState.value,
     getIsSelected: getIsSelected,
     changeSelected: changeSelected,
+    checkAnswer: checkAnswer,
     goToNextQuiz: goToNextQuiz,
   );
 }
