@@ -1,7 +1,7 @@
+import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:quiz_shower/ui/screen/setting_screen/add_auth_screen.dart';
 import 'package:quiz_shower/ui/screen/setting_screen/change_email_screen.dart';
-import 'package:quiz_shower/ui/screen/setting_screen/change_password_screen.dart';
 
 class SettingScreen extends StatefulWidget {
   const SettingScreen({Key? key}) : super(key: key);
@@ -334,7 +334,7 @@ class SettingScreenState extends State<SettingScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const ChangePasswordScreen(),
+                        builder: (context) => const ForgotPasswordScreen(),
                       ),
                     );
                   },
