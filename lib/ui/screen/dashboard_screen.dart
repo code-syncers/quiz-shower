@@ -22,7 +22,7 @@ class DashboardScreen extends StatelessWidget {
                 children: [
                   Text(
                     'プロフィール',
-                    style: TextStyle(fontSize: 20),
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(width: 16),
                   Icon(
@@ -31,7 +31,6 @@ class DashboardScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              const Divider(thickness: 1),
               const SizedBox(height: 16),
               const Row(
                 children: [
@@ -57,17 +56,19 @@ class DashboardScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 8),
+              const Divider(thickness: 1),
+              const SizedBox(height: 8),
               const Row(
                 children: [
                   Text(
                     '履歴：',
-                    style: TextStyle(fontSize: 20),
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(width: 16),
                   Text(
                     '記事名(例)',
-                    style: TextStyle(fontSize: 18),
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(width: 16),
                   Icon(
@@ -76,7 +77,6 @@ class DashboardScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              const Divider(thickness: 1),
               const Column(
                 children: [
                   SizedBox(height: 16),
@@ -125,85 +125,87 @@ class DashboardScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 8),
+              const Divider(thickness: 1),
+              const SizedBox(height: 8),
               const Text(
                 '復習する',
-                style: TextStyle(fontSize: 20),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
+              ListTile(
+                title: const Row(
+                  children: [
+                    Text(
+                      'Q21',
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(width: 8),
+                    Text('透明UIを作る'),
+                  ],
+                ),
+                subtitle: const Text('透明UIについて説明したものを次のうちから選べ'),
+                trailing: const Icon(Icons.navigate_next),
+                onTap: () {},
+              ),
+              const SizedBox(height: 8),
+              ListTile(
+                title: const Row(
+                  children: [
+                    Text(
+                      'Q21',
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(width: 8),
+                    Text('透明UIを作る'),
+                  ],
+                ),
+                subtitle: const Text('透明UIについて説明したものを次のうちから選べ'),
+                trailing: const Icon(Icons.navigate_next),
+                onTap: () {},
+              ),
+              const SizedBox(height: 8),
+              ListTile(
+                title: const Row(
+                  children: [
+                    Text(
+                      'Q21',
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(width: 8),
+                    Text('透明UIを作る'),
+                  ],
+                ),
+                subtitle: const Text('透明UIについて説明したものを次のうちから選べ'),
+                trailing: const Icon(Icons.navigate_next),
+                onTap: () {},
+              ),
+              const SizedBox(height: 8),
+              ListTile(
+                title: const Row(
+                  children: [
+                    Text(
+                      'Q21',
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(width: 8),
+                    Text('透明UIを作る'),
+                  ],
+                ),
+                subtitle: const Text('透明UIについて説明したものを次のうちから選べ'),
+                trailing: const Icon(Icons.navigate_next),
+                onTap: () {},
+              ),
+              const SizedBox(height: 8),
               const Divider(thickness: 1),
-              ListTile(
-                title: const Row(
-                  children: [
-                    Text(
-                      'Q21',
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(width: 8),
-                    Text('透明UIを作る'),
-                  ],
-                ),
-                subtitle: const Text('透明UIについて説明したものを次のうちから選べ'),
-                trailing: const Icon(Icons.navigate_next),
-                onTap: () {},
-              ),
               const SizedBox(height: 8),
-              ListTile(
-                title: const Row(
-                  children: [
-                    Text(
-                      'Q21',
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(width: 8),
-                    Text('透明UIを作る'),
-                  ],
-                ),
-                subtitle: const Text('透明UIについて説明したものを次のうちから選べ'),
-                trailing: const Icon(Icons.navigate_next),
-                onTap: () {},
-              ),
-              const SizedBox(height: 8),
-              ListTile(
-                title: const Row(
-                  children: [
-                    Text(
-                      'Q21',
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(width: 8),
-                    Text('透明UIを作る'),
-                  ],
-                ),
-                subtitle: const Text('透明UIについて説明したものを次のうちから選べ'),
-                trailing: const Icon(Icons.navigate_next),
-                onTap: () {},
-              ),
-              const SizedBox(height: 8),
-              ListTile(
-                title: const Row(
-                  children: [
-                    Text(
-                      'Q21',
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(width: 8),
-                    Text('透明UIを作る'),
-                  ],
-                ),
-                subtitle: const Text('透明UIについて説明したものを次のうちから選べ'),
-                trailing: const Icon(Icons.navigate_next),
-                onTap: () {},
-              ),
-              const SizedBox(height: 16),
               const Text(
                 '通知',
-                style: TextStyle(fontSize: 20),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
-              const Divider(thickness: 1),
               const Column(
                 children: [
                   SizedBox(height: 16),
