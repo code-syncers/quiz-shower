@@ -49,14 +49,22 @@ class QuizScreen extends HookWidget {
                   .map(
                 (entry) {
                   final index = entry.key;
-                  //final option = entry.value;
-                  return IconButton(
-                    onPressed: () {
-                      state.changeSelected(index);
-                    },
-                    icon: const Icon(Icons.add),
-                    selectedIcon: const Icon(Icons.home),
-                    isSelected: state.getIsSelected(index),
+                  final option = entry.value;
+                  return Row(
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          state.changeSelected(index);
+                        },
+                        icon: const Icon(Icons.check_box_outline_blank_rounded),
+                        selectedIcon: const Icon(Icons.check_box_rounded),
+                        isSelected: state.getIsSelected(index),
+                      ),
+                      Text(
+                        option,
+                        style: const TextStyle(fontSize: 16),
+                      ),
+                    ],
                   );
                 },
               ).toList(),
