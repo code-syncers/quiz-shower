@@ -41,6 +41,7 @@ class QuizShowerApp extends StatelessWidget {
         fontFamily: kIsWeb ? 'NotoSansJP' : null,
       ),
       home: const QuizShowerScaffold(),
+      debugShowCheckedModeBanner: false,
       locale: const Locale('ja', 'JP'),
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
