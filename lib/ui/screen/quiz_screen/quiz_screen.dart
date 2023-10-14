@@ -4,8 +4,7 @@ import 'package:quiz_shower/data/model/quiz.dart';
 import 'package:quiz_shower/ui/screen/quiz_screen/hook/use_quiz_screen_state.dart';
 
 class QuizScreen extends HookWidget {
-  const QuizScreen({Key? key}) : super(key: key);
-
+  const QuizScreen({super.key});
   @override
   Widget build(BuildContext context) {
     final quizList = useMemoized(
