@@ -236,19 +236,26 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
             ),
           ],
         ),
-        floatingActionButton: state.isQuizMode
-            ? null
-            : FloatingActionButton(
-                onPressed: () {
-                  Navigator.push(
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            state.isQuizMode
+                ? Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const AddArticleScreen(),
+                    ),
+                  )
+                : Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => const AddArticleScreen(),
                     ),
                   );
-                },
-                child: const Icon(Icons.add),
-              ),
+          },
+          child: state.isQuizMode
+              ? const Icon(Icons.scoreboard_rounded)
+              : const Icon(Icons.add_rounded),
+        ),
       ),
     );
   }
