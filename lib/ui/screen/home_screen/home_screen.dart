@@ -63,8 +63,7 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
           ),
         ),
         drawer: Drawer(
-          child: ListView(
-            padding: EdgeInsets.zero,
+          child: Column(
             children: <Widget>[
               DrawerHeader(
                 decoration: BoxDecoration(
@@ -77,24 +76,6 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
                     fontSize: 24,
                   ),
                 ),
-              ),
-              ListTile(
-                title: const Text('設定'),
-                onTap: () {
-                  Navigator.pop(context);
-                  Navigator.pushNamed(context, '/setting_screen');
-                },
-              ),
-              ListTile(
-                title: const Text('ダッシュボード'),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const DashboardScreen(),
-                    ),
-                  );
-                },
               ),
               if (!_isUserLoggedIn)
                 ListTile(
@@ -196,19 +177,63 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
                     );
                   },
                 ),
-              const Spacer(),
-              const Divider(),
-              ListTile(
-                leading: const Icon(Icons.share_rounded),
-                title: const Text('アプリを共有'),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const ShareAppScreen(),
-                    ),
-                  );
-                },
+              Expanded(
+                child: LayoutBuilder(
+                  builder: (context, constrains) {
+                    return SingleChildScrollView(
+                      child: ConstrainedBox(
+                        constraints: BoxConstraints(
+                          minHeight: constrains.maxHeight,
+                        ),
+                        child: IntrinsicHeight(
+                          child: Column(
+                            children: [
+                              ListTile(
+                                title: const Text('設定'),
+                                onTap: () {
+                                  Navigator.pop(context);
+                                  Navigator.pushNamed(
+                                    context,
+                                    '/setting_screen',
+                                  );
+                                },
+                              ),
+                              ListTile(
+                                title: const Text('ダッシュボード'),
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const DashboardScreen(),
+                                    ),
+                                  );
+                                },
+                              ),
+                              const Spacer(),
+                              const Divider(
+                                thickness: 1.0,
+                              ),
+                              ListTile(
+                                leading: const Icon(Icons.share_rounded),
+                                title: const Text('アプリを共有'),
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const ShareAppScreen(),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
               ),
             ],
           ),
