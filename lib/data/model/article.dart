@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'article.freezed.dart';
+part 'article.g.dart';
 
 @freezed
 class Article with _$Article {
@@ -18,6 +19,8 @@ class Article with _$Article {
     required String content,
     @Default(false) bool isPublic,
   }) = _Article;
+
+  factory Article.fromJson(Map<String, dynamic> json) => _$ArticleFromJson(json);
 
   static Article mock() {
     return Article(

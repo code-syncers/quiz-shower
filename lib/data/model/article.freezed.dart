@@ -14,6 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+Article _$ArticleFromJson(Map<String, dynamic> json) {
+  return _Article.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Article {
   String get id => throw _privateConstructorUsedError;
@@ -27,6 +31,7 @@ mixin _$Article {
   String get content => throw _privateConstructorUsedError;
   bool get isPublic => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ArticleCopyWith<Article> get copyWith => throw _privateConstructorUsedError;
 }
@@ -206,7 +211,7 @@ class __$$ArticleImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$ArticleImpl extends _Article {
   const _$ArticleImpl(
       {required this.id,
@@ -220,6 +225,9 @@ class _$ArticleImpl extends _Article {
       required this.content,
       this.isPublic = false})
       : super._();
+
+  factory _$ArticleImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ArticleImplFromJson(json);
 
   @override
   final String id;
@@ -270,6 +278,7 @@ class _$ArticleImpl extends _Article {
                 other.isPublic == isPublic));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, createdBy, createdAt, title,
       description, isBookmarked, type, url, content, isPublic);
@@ -279,6 +288,13 @@ class _$ArticleImpl extends _Article {
   @pragma('vm:prefer-inline')
   _$$ArticleImplCopyWith<_$ArticleImpl> get copyWith =>
       __$$ArticleImplCopyWithImpl<_$ArticleImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ArticleImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _Article extends Article {
@@ -294,6 +310,8 @@ abstract class _Article extends Article {
       required final String content,
       final bool isPublic}) = _$ArticleImpl;
   const _Article._() : super._();
+
+  factory _Article.fromJson(Map<String, dynamic> json) = _$ArticleImpl.fromJson;
 
   @override
   String get id;
