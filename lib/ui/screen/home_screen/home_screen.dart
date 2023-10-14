@@ -78,6 +78,13 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
                 ),
               ),
               ListTile(
+                title: const Text('記事画面(debug)'),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.pushNamed(context, '/article');
+                },
+              ),
+              ListTile(
                 title: const Text('設定'),
                 onTap: () {
                   Navigator.pop(context);
