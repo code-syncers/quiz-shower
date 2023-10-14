@@ -21,10 +21,21 @@ module.exports = {
   ignorePatterns: [
     "/lib/**/*", // Ignore built files.
   ],
-  plugins: ["@typescript-eslint", "import"],
+  plugins: ["@typescript-eslint", "import", "sort-exports"],
   rules: {
     quotes: ["error", "double"],
     "import/no-unresolved": 0,
     indent: ["error", 2],
+    "import/order": [
+      "error",
+      {
+        alphabetize: {
+          order: "asc",
+          caseInsensitive: true,
+        },
+      },
+    ],
+    "sort-exports/sort-exports": ["error", { sortDir: "asc" }],
+    "require-jsdoc": 0,
   },
 };
