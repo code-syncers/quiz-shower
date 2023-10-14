@@ -6,6 +6,7 @@ import 'package:quiz_shower/data/model/article.dart';
 import 'package:quiz_shower/ui/screen/dashboard_screen.dart';
 import 'package:quiz_shower/ui/screen/home_screen/component/preview_card.dart';
 import 'package:quiz_shower/ui/screen/home_screen/hook/use_home_screen_state.dart';
+import 'package:quiz_shower/ui/screen/home_screen/share_app_screen.dart';
 
 class QuizShowerScaffold extends StatefulHookWidget {
   const QuizShowerScaffold({super.key});
@@ -195,6 +196,20 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
                     );
                   },
                 ),
+              const Spacer(),
+              const Divider(),
+              ListTile(
+                leading: const Icon(Icons.share_rounded),
+                title: const Text('アプリを共有'),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ShareAppScreen(),
+                    ),
+                  );
+                },
+              ),
             ],
           ),
         ),
