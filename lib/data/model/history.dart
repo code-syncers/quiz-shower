@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'history.freezed.dart';
+part 'history.g.dart';
 
 @freezed
 class History with _$History {
@@ -13,6 +14,9 @@ class History with _$History {
     @Default(false) bool isTaisen,
     @Default(false) bool isPublic,
   }) = _History;
+
+  factory History.fromJson(Map<String, dynamic> json) =>
+      _$HistoryFromJson(json);
 
   static History mock() {
     return const History(
