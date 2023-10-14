@@ -18,8 +18,7 @@ class Quiz with _$Quiz {
     required String explanation,
   }) = _Quiz;
 
-  factory Quiz.fromJson(Map<String, dynamic> json) =>
-      _$QuizFromJson(json);
+  factory Quiz.fromJson(Map<String, dynamic> json) => _$QuizFromJson(json);
 
   static Quiz mock() {
     return const Quiz(

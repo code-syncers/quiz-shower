@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:quiz_shower/data/model/quiz.dart';
 
 abstract class QuizRepository {
-  Query<Quiz> quizQuery(String id);
+  Query<Quiz> quizQuery(String articleId);
 
   Future<Quiz?> getQuiz(String id);
 

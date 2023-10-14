@@ -9,12 +9,12 @@ class QuizRepositoryImpl implements QuizRepository {
       .collection(quizzesCollectionPath)
       .withConverter(
         fromFirestore: (snapshot, _) => Quiz.fromJson(snapshot.data()!),
-        toFirestore: (article, _) => article.toJson(),
+        toFirestore: (quiz, _) => quiz.toJson(),
       );
 
   @override
-  Query<Quiz> quizQuery(String id) {
-    return quizzesRef.where('id', isEqualTo: id);
+  Query<Quiz> quizQuery(String articleId) {
+    return quizzesRef.where('articleId', isEqualTo: articleId);
   }
 
   @override
@@ -32,5 +32,4 @@ class QuizRepositoryImpl implements QuizRepository {
   Future<void> deleteQuiz(String id) async {
     await quizzesRef.doc(id).delete();
   }
-
 }
