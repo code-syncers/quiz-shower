@@ -10,7 +10,6 @@ _$ArticleImpl _$$ArticleImplFromJson(Map<String, dynamic> json) =>
     _$ArticleImpl(
       id: json['id'] as String,
       createdBy: json['createdBy'] as String,
-      createdAt: DateTime.parse(json['createdAt'] as String),
       title: json['title'] as String,
       description: json['description'] as String,
       isBookmarked: json['isBookmarked'] as bool,
@@ -18,13 +17,14 @@ _$ArticleImpl _$$ArticleImplFromJson(Map<String, dynamic> json) =>
       url: json['url'] as String?,
       content: json['content'] as String,
       isPublic: json['isPublic'] as bool? ?? false,
+      createdAt: const FirestoreDateTimeConverter()
+          .fromJson(json['createdAt'] as Timestamp),
     );
 
 Map<String, dynamic> _$$ArticleImplToJson(_$ArticleImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'createdBy': instance.createdBy,
-      'createdAt': instance.createdAt.toIso8601String(),
       'title': instance.title,
       'description': instance.description,
       'isBookmarked': instance.isBookmarked,
@@ -32,6 +32,8 @@ Map<String, dynamic> _$$ArticleImplToJson(_$ArticleImpl instance) =>
       'url': instance.url,
       'content': instance.content,
       'isPublic': instance.isPublic,
+      'createdAt':
+          const FirestoreDateTimeConverter().toJson(instance.createdAt),
     };
 
 const _$ArticleTypeEnumMap = {

@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:quiz_shower/data/model/firestore_datetime_convert.dart';
 
 part 'article.freezed.dart';
 part 'article.g.dart';
@@ -10,7 +11,6 @@ class Article with _$Article {
   const factory Article({
     required String id,
     required String createdBy,
-    required DateTime createdAt,
     required String title,
     required String description,
     required bool isBookmarked,
@@ -18,6 +18,7 @@ class Article with _$Article {
     required String? url,
     required String content,
     @Default(false) bool isPublic,
+    @FirestoreDateTimeConverter() required DateTime createdAt,
   }) = _Article;
 
   factory Article.fromJson(Map<String, dynamic> json) => _$ArticleFromJson(json);

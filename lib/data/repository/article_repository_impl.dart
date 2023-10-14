@@ -18,6 +18,12 @@ class ArticleRepositoryImpl implements ArticleRepository {
   }
 
   @override
+  Future<Article?> getArticle(String id) async {
+    final snapshot = await articlesRef.doc(id).get();
+    return snapshot.data();
+  }
+
+  @override
   Future<void> createArticle(Article article) async {
     await articlesRef.doc(article.id).set(article, SetOptions(merge: true));
   }
@@ -25,11 +31,5 @@ class ArticleRepositoryImpl implements ArticleRepository {
   @override
   Future<void> deleteArticle(String id) async {
     await articlesRef.doc(id).delete();
-  }
-
-  @override
-  Future<Article?> getArticle(String id) async {
-    final snapshot = await articlesRef.doc(id).get();
-    return snapshot.data();
   }
 }

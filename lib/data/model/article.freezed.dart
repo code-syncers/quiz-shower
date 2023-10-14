@@ -22,7 +22,6 @@ Article _$ArticleFromJson(Map<String, dynamic> json) {
 mixin _$Article {
   String get id => throw _privateConstructorUsedError;
   String get createdBy => throw _privateConstructorUsedError;
-  DateTime get createdAt => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   bool get isBookmarked => throw _privateConstructorUsedError;
@@ -30,6 +29,8 @@ mixin _$Article {
   String? get url => throw _privateConstructorUsedError;
   String get content => throw _privateConstructorUsedError;
   bool get isPublic => throw _privateConstructorUsedError;
+  @FirestoreDateTimeConverter()
+  DateTime get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -44,14 +45,14 @@ abstract class $ArticleCopyWith<$Res> {
   $Res call(
       {String id,
       String createdBy,
-      DateTime createdAt,
       String title,
       String description,
       bool isBookmarked,
       ArticleType type,
       String? url,
       String content,
-      bool isPublic});
+      bool isPublic,
+      @FirestoreDateTimeConverter() DateTime createdAt});
 }
 
 /// @nodoc
@@ -69,7 +70,6 @@ class _$ArticleCopyWithImpl<$Res, $Val extends Article>
   $Res call({
     Object? id = null,
     Object? createdBy = null,
-    Object? createdAt = null,
     Object? title = null,
     Object? description = null,
     Object? isBookmarked = null,
@@ -77,6 +77,7 @@ class _$ArticleCopyWithImpl<$Res, $Val extends Article>
     Object? url = freezed,
     Object? content = null,
     Object? isPublic = null,
+    Object? createdAt = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -87,10 +88,6 @@ class _$ArticleCopyWithImpl<$Res, $Val extends Article>
           ? _value.createdBy
           : createdBy // ignore: cast_nullable_to_non_nullable
               as String,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -119,6 +116,10 @@ class _$ArticleCopyWithImpl<$Res, $Val extends Article>
           ? _value.isPublic
           : isPublic // ignore: cast_nullable_to_non_nullable
               as bool,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ) as $Val);
   }
 }
@@ -133,14 +134,14 @@ abstract class _$$ArticleImplCopyWith<$Res> implements $ArticleCopyWith<$Res> {
   $Res call(
       {String id,
       String createdBy,
-      DateTime createdAt,
       String title,
       String description,
       bool isBookmarked,
       ArticleType type,
       String? url,
       String content,
-      bool isPublic});
+      bool isPublic,
+      @FirestoreDateTimeConverter() DateTime createdAt});
 }
 
 /// @nodoc
@@ -156,7 +157,6 @@ class __$$ArticleImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? createdBy = null,
-    Object? createdAt = null,
     Object? title = null,
     Object? description = null,
     Object? isBookmarked = null,
@@ -164,6 +164,7 @@ class __$$ArticleImplCopyWithImpl<$Res>
     Object? url = freezed,
     Object? content = null,
     Object? isPublic = null,
+    Object? createdAt = null,
   }) {
     return _then(_$ArticleImpl(
       id: null == id
@@ -174,10 +175,6 @@ class __$$ArticleImplCopyWithImpl<$Res>
           ? _value.createdBy
           : createdBy // ignore: cast_nullable_to_non_nullable
               as String,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -206,6 +203,10 @@ class __$$ArticleImplCopyWithImpl<$Res>
           ? _value.isPublic
           : isPublic // ignore: cast_nullable_to_non_nullable
               as bool,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
@@ -216,14 +217,14 @@ class _$ArticleImpl extends _Article {
   const _$ArticleImpl(
       {required this.id,
       required this.createdBy,
-      required this.createdAt,
       required this.title,
       required this.description,
       required this.isBookmarked,
       required this.type,
       required this.url,
       required this.content,
-      this.isPublic = false})
+      this.isPublic = false,
+      @FirestoreDateTimeConverter() required this.createdAt})
       : super._();
 
   factory _$ArticleImpl.fromJson(Map<String, dynamic> json) =>
@@ -233,8 +234,6 @@ class _$ArticleImpl extends _Article {
   final String id;
   @override
   final String createdBy;
-  @override
-  final DateTime createdAt;
   @override
   final String title;
   @override
@@ -250,10 +249,13 @@ class _$ArticleImpl extends _Article {
   @override
   @JsonKey()
   final bool isPublic;
+  @override
+  @FirestoreDateTimeConverter()
+  final DateTime createdAt;
 
   @override
   String toString() {
-    return 'Article(id: $id, createdBy: $createdBy, createdAt: $createdAt, title: $title, description: $description, isBookmarked: $isBookmarked, type: $type, url: $url, content: $content, isPublic: $isPublic)';
+    return 'Article(id: $id, createdBy: $createdBy, title: $title, description: $description, isBookmarked: $isBookmarked, type: $type, url: $url, content: $content, isPublic: $isPublic, createdAt: $createdAt)';
   }
 
   @override
@@ -264,8 +266,6 @@ class _$ArticleImpl extends _Article {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.createdBy, createdBy) ||
                 other.createdBy == createdBy) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
                 other.description == description) &&
@@ -275,13 +275,15 @@ class _$ArticleImpl extends _Article {
             (identical(other.url, url) || other.url == url) &&
             (identical(other.content, content) || other.content == content) &&
             (identical(other.isPublic, isPublic) ||
-                other.isPublic == isPublic));
+                other.isPublic == isPublic) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, createdBy, createdAt, title,
-      description, isBookmarked, type, url, content, isPublic);
+  int get hashCode => Object.hash(runtimeType, id, createdBy, title,
+      description, isBookmarked, type, url, content, isPublic, createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -299,16 +301,17 @@ class _$ArticleImpl extends _Article {
 
 abstract class _Article extends Article {
   const factory _Article(
-      {required final String id,
-      required final String createdBy,
-      required final DateTime createdAt,
-      required final String title,
-      required final String description,
-      required final bool isBookmarked,
-      required final ArticleType type,
-      required final String? url,
-      required final String content,
-      final bool isPublic}) = _$ArticleImpl;
+          {required final String id,
+          required final String createdBy,
+          required final String title,
+          required final String description,
+          required final bool isBookmarked,
+          required final ArticleType type,
+          required final String? url,
+          required final String content,
+          final bool isPublic,
+          @FirestoreDateTimeConverter() required final DateTime createdAt}) =
+      _$ArticleImpl;
   const _Article._() : super._();
 
   factory _Article.fromJson(Map<String, dynamic> json) = _$ArticleImpl.fromJson;
@@ -317,8 +320,6 @@ abstract class _Article extends Article {
   String get id;
   @override
   String get createdBy;
-  @override
-  DateTime get createdAt;
   @override
   String get title;
   @override
@@ -333,6 +334,9 @@ abstract class _Article extends Article {
   String get content;
   @override
   bool get isPublic;
+  @override
+  @FirestoreDateTimeConverter()
+  DateTime get createdAt;
   @override
   @JsonKey(ignore: true)
   _$$ArticleImplCopyWith<_$ArticleImpl> get copyWith =>
