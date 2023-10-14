@@ -29,7 +29,7 @@ class QuizShowerApp extends StatelessWidget {
       routes: {
         '/setting_screen': (context) => const SettingScreen(),
         '/debug': (context) => const DebugScreen(),
-        '/article': (context) => const ArticleScreen(),
+        '/article': (context) => ArticleScreen(),
       },
       title: 'Quiz Shower',
       theme: ThemeData(
