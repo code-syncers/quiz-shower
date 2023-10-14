@@ -3,6 +3,7 @@ import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:quiz_shower/data/model/article.dart';
+import 'package:quiz_shower/ui/screen/dashboard_screen.dart';
 import 'package:quiz_shower/ui/screen/home_screen/component/preview_card.dart';
 import 'package:quiz_shower/ui/screen/home_screen/hook/use_home_screen_state.dart';
 
@@ -81,6 +82,17 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
                 onTap: () {
                   Navigator.pop(context);
                   Navigator.pushNamed(context, '/setting_screen');
+                },
+              ),
+              ListTile(
+                title: const Text('ダッシュボード'),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const DashboardScreen(),
+                    ),
+                  );
                 },
               ),
               if (!_isUserLoggedIn)
