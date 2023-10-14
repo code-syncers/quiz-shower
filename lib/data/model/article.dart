@@ -21,7 +21,8 @@ class Article with _$Article {
     @FirestoreDateTimeConverter() required DateTime createdAt,
   }) = _Article;
 
-  factory Article.fromJson(Map<String, dynamic> json) => _$ArticleFromJson(json);
+  factory Article.fromJson(Map<String, dynamic> json) =>
+      _$ArticleFromJson(json);
 
   static Article mock() {
     return Article(
