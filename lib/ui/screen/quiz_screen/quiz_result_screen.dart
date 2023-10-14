@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_shower/data/model/quiz.dart';
+import 'package:quiz_shower/ui/screen/home_screen/component/result_character.dart';
 import 'package:quiz_shower/ui/screen/home_screen/home_screen.dart';
 import 'package:quiz_shower/ui/screen/quiz_screen/quiz_screen.dart';
 
@@ -7,6 +8,7 @@ class QuizResultScreen extends StatelessWidget {
   QuizResultScreen({super.key});
   final Quiz quiz = Quiz.mock();
   final quizList = [Quiz.mock()];
+  final correctedAnswers = 2;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,7 @@ class QuizResultScreen extends StatelessWidget {
                     child: CircularProgressIndicator(
                       strokeWidth: 15,
                       strokeAlign: BorderSide.strokeAlignOutside,
-                      value: 0.78, //ここを正答率に変更する
+                      value: correctedAnswers / 5, //ここを正答率に変更する
                       color: Theme.of(context).colorScheme.primary,
                       backgroundColor: Theme.of(context)
                           .colorScheme
@@ -43,7 +45,7 @@ class QuizResultScreen extends StatelessWidget {
                       style: DefaultTextStyle.of(context).style,
                       children: <TextSpan>[
                         TextSpan(
-                          text: '4', //ここを正解問題数に変更する(correctedQuiz)
+                          text: correctedAnswers.toString(),
                           style: TextStyle(
                             color: Theme.of(context).colorScheme.tertiary,
                             decoration: TextDecoration.none,
@@ -62,11 +64,15 @@ class QuizResultScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              // ResultCharacter(),
               const SizedBox(height: 50),
+              ResultCharacter(
+                key: const ValueKey('someKey'),
+                correctAnswers: correctedAnswers, //ここを実際の値に変える
+              ),
+              const SizedBox(height: 20),
               SizedBox(
                 width: 300,
-                child: ElevatedButton(
+                child: FilledButton(
                   onPressed: () {
                     Navigator.push(
                       context,
