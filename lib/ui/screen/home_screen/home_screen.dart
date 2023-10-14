@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart' hide EmailAuthProvider;
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:quiz_shower/data/model/article.dart';
@@ -77,6 +78,32 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
                     fontSize: 24,
                   ),
                 ),
+              ),
+              if (kDebugMode)
+                ListTile(
+                  title: const Text('debug画面'),
+                  onTap: () {
+                    Navigator.pop(context);
+                    Navigator.pushNamed(context, '/debug');
+                  },
+                ),
+              ListTile(
+                title: const Text('設定'),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.pushNamed(context, '/setting_screen');
+                },
+              ),
+              ListTile(
+                title: const Text('ダッシュボード'),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const DashboardScreen(),
+                    ),
+                  );
+                },
               ),
               if (!_isUserLoggedIn)
                 ListTile(
@@ -267,19 +294,26 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
             ),
           ],
         ),
-        floatingActionButton: state.isQuizMode
-            ? null
-            : FloatingActionButton(
-                onPressed: () {
-                  Navigator.push(
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            state.isQuizMode
+                ? Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const AddArticleScreen(),
+                    ),
+                  )
+                : Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => const AddArticleScreen(),
                     ),
                   );
-                },
-                child: const Icon(Icons.add),
-              ),
+          },
+          child: state.isQuizMode
+              ? const Icon(Icons.scoreboard_rounded)
+              : const Icon(Icons.add_rounded),
+        ),
       ),
     );
   }

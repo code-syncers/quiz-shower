@@ -3,6 +3,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:quiz_shower/ui/screen/debug_mode/debug_screen.dart';
+import 'package:quiz_shower/ui/screen/home_screen/article_screen.dart';
 import 'package:quiz_shower/ui/screen/home_screen/home_screen.dart';
 import 'package:quiz_shower/ui/screen/setting_screen/setting_screen.dart';
 
@@ -26,6 +28,8 @@ class QuizShowerApp extends StatelessWidget {
     return MaterialApp(
       routes: {
         '/setting_screen': (context) => const SettingScreen(),
+        '/debug': (context) => const DebugScreen(),
+        '/article': (context) => const ArticleScreen(),
       },
       title: 'Quiz Shower',
       theme: ThemeData(
