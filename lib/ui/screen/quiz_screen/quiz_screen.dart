@@ -47,30 +47,36 @@ class QuizScreen extends HookWidget {
                   ),
                   Text(
                     quiz.statement,
-                    style: const TextStyle(fontSize: 20),
                   ),
                   const SizedBox(height: 16),
                   Column(
                     children: quiz.options.asMap().entries.map((entry) {
                       final optionIndex = entry.key;
                       final option = entry.value;
-                      return Row(
-                        children: [
-                          IconButton(
-                            onPressed: () {
-                              state.changeSelected(optionIndex);
-                            },
-                            icon: state.getIsSelected(optionIndex)
-                                ? const Icon(Icons.check_box_rounded)
-                                : const Icon(
-                                    Icons.check_box_outline_blank_rounded,
-                                  ),
+                      return InkWell(
+                        onTap: () {
+                          state.changeSelected(optionIndex);
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            children: [
+                              state.getIsSelected(optionIndex)
+                                  ? const Icon(Icons.check_box_rounded)
+                                  : const Icon(
+                                      Icons.check_box_outline_blank_rounded,
+                                    ),
+                              const SizedBox(
+                                width: 8,
+                              ),
+                              Expanded(
+                                child: Text(
+                                  option,
+                                ),
+                              ),
+                            ],
                           ),
-                          Text(
-                            option,
-                            style: const TextStyle(fontSize: 16),
-                          ),
-                        ],
+                        ),
                       );
                     }).toList(),
                   ),
