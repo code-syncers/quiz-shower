@@ -1,12 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:quiz_shower/data/model/history.dart';
 import 'package:quiz_shower/data/repository/history_repository.dart';
 
 class HistoryRepositoryImpl implements HistoryRepository {
-  static const String historyCollectionPath = 'histories';
+  static String historyCollectionPath(String uid) => 'users/$uid/histories';
 
   final CollectionReference<History> historiesRef = FirebaseFirestore.instance
-      .collection(historyCollectionPath)
+      .collection(historyCollectionPath(FirebaseAuth.instance.currentUser!.uid))
       .withConverter(
         fromFirestore: (snapshot, _) => History.fromJson(snapshot.data()!),
         toFirestore: (history, _) => history.toJson(),

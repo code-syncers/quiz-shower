@@ -4,9 +4,11 @@ import 'package:quiz_shower/data/model/quiz.dart';
 abstract class QuizRepository {
   Query<Quiz> quizQuery(String articleId);
 
-  Future<Quiz?> getQuiz(String id);
+  Future<List<Quiz>> getQuizzes(String articleId);
+
+  Future<Quiz?> getQuiz(String quizId, String articleId);
 
   Future<void> createQuiz(Quiz quiz);
 
-  Future<void> deleteQuiz(String id);
+  Future<void> deleteQuiz(String quizId, String articleId);
 }
