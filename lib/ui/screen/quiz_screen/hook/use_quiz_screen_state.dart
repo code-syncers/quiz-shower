@@ -13,10 +13,11 @@ class QuizScreenState with _$QuizScreenState {
     required List<Quiz> quizList,
     required int currentQuizNumber,
     required List<int> selectedOptions,
+    required bool hasAnswered,
     required bool Function(int) getIsSelected,
     required void Function(int) changeSelected,
+    required bool Function() showAnswer,
     required bool Function() checkAnswer,
-    required void Function() goToNextQuiz,
   }) = _QuizScreenState;
 }
 
@@ -27,6 +28,7 @@ QuizScreenState useQuizScreenState({
 }) {
   final currentQuizNumberState = useState(0);
   final selectedOptionsState = useState<List<int>>(selectedOptions);
+  final hasAnsweredState = useState(false);
 
   bool getIsSelected(int index) {
     return selectedOptionsState.value.contains(index);
@@ -39,25 +41,23 @@ QuizScreenState useQuizScreenState({
     selectedOptionsState.value.sort(((a, b) => a.compareTo(b)));
   }
 
+  bool showAnswer() {
+    return hasAnsweredState.value = true;
+  }
+
   bool checkAnswer() {
     final currentQuiz = quizList[currentQuizNumberState.value];
     return listEquals(selectedOptionsState.value, currentQuiz.answers);
-  }
-
-  void goToNextQuiz() {
-    if (currentQuizNumberState.value < quizList.length - 1) {
-      currentQuizNumberState.value++;
-      selectedOptionsState.value = [];
-    }
   }
 
   return QuizScreenState(
     quizList: quizList,
     currentQuizNumber: currentQuizNumberState.value,
     selectedOptions: selectedOptionsState.value,
+    hasAnswered: hasAnsweredState.value,
     getIsSelected: getIsSelected,
     changeSelected: changeSelected,
+    showAnswer: showAnswer,
     checkAnswer: checkAnswer,
-    goToNextQuiz: goToNextQuiz,
   );
 }

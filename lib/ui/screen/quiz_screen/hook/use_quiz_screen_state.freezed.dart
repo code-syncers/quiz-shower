@@ -19,10 +19,11 @@ mixin _$QuizScreenState {
   List<Quiz> get quizList => throw _privateConstructorUsedError;
   int get currentQuizNumber => throw _privateConstructorUsedError;
   List<int> get selectedOptions => throw _privateConstructorUsedError;
+  bool get hasAnswered => throw _privateConstructorUsedError;
   bool Function(int) get getIsSelected => throw _privateConstructorUsedError;
   void Function(int) get changeSelected => throw _privateConstructorUsedError;
+  bool Function() get showAnswer => throw _privateConstructorUsedError;
   bool Function() get checkAnswer => throw _privateConstructorUsedError;
-  void Function() get goToNextQuiz => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $QuizScreenStateCopyWith<QuizScreenState> get copyWith =>
@@ -39,10 +40,11 @@ abstract class $QuizScreenStateCopyWith<$Res> {
       {List<Quiz> quizList,
       int currentQuizNumber,
       List<int> selectedOptions,
+      bool hasAnswered,
       bool Function(int) getIsSelected,
       void Function(int) changeSelected,
-      bool Function() checkAnswer,
-      void Function() goToNextQuiz});
+      bool Function() showAnswer,
+      bool Function() checkAnswer});
 }
 
 /// @nodoc
@@ -61,10 +63,11 @@ class _$QuizScreenStateCopyWithImpl<$Res, $Val extends QuizScreenState>
     Object? quizList = null,
     Object? currentQuizNumber = null,
     Object? selectedOptions = null,
+    Object? hasAnswered = null,
     Object? getIsSelected = null,
     Object? changeSelected = null,
+    Object? showAnswer = null,
     Object? checkAnswer = null,
-    Object? goToNextQuiz = null,
   }) {
     return _then(_value.copyWith(
       quizList: null == quizList
@@ -79,6 +82,10 @@ class _$QuizScreenStateCopyWithImpl<$Res, $Val extends QuizScreenState>
           ? _value.selectedOptions
           : selectedOptions // ignore: cast_nullable_to_non_nullable
               as List<int>,
+      hasAnswered: null == hasAnswered
+          ? _value.hasAnswered
+          : hasAnswered // ignore: cast_nullable_to_non_nullable
+              as bool,
       getIsSelected: null == getIsSelected
           ? _value.getIsSelected
           : getIsSelected // ignore: cast_nullable_to_non_nullable
@@ -87,14 +94,14 @@ class _$QuizScreenStateCopyWithImpl<$Res, $Val extends QuizScreenState>
           ? _value.changeSelected
           : changeSelected // ignore: cast_nullable_to_non_nullable
               as void Function(int),
+      showAnswer: null == showAnswer
+          ? _value.showAnswer
+          : showAnswer // ignore: cast_nullable_to_non_nullable
+              as bool Function(),
       checkAnswer: null == checkAnswer
           ? _value.checkAnswer
           : checkAnswer // ignore: cast_nullable_to_non_nullable
               as bool Function(),
-      goToNextQuiz: null == goToNextQuiz
-          ? _value.goToNextQuiz
-          : goToNextQuiz // ignore: cast_nullable_to_non_nullable
-              as void Function(),
     ) as $Val);
   }
 }
@@ -111,10 +118,11 @@ abstract class _$$QuizScreenStateImplCopyWith<$Res>
       {List<Quiz> quizList,
       int currentQuizNumber,
       List<int> selectedOptions,
+      bool hasAnswered,
       bool Function(int) getIsSelected,
       void Function(int) changeSelected,
-      bool Function() checkAnswer,
-      void Function() goToNextQuiz});
+      bool Function() showAnswer,
+      bool Function() checkAnswer});
 }
 
 /// @nodoc
@@ -131,10 +139,11 @@ class __$$QuizScreenStateImplCopyWithImpl<$Res>
     Object? quizList = null,
     Object? currentQuizNumber = null,
     Object? selectedOptions = null,
+    Object? hasAnswered = null,
     Object? getIsSelected = null,
     Object? changeSelected = null,
+    Object? showAnswer = null,
     Object? checkAnswer = null,
-    Object? goToNextQuiz = null,
   }) {
     return _then(_$QuizScreenStateImpl(
       quizList: null == quizList
@@ -149,6 +158,10 @@ class __$$QuizScreenStateImplCopyWithImpl<$Res>
           ? _value._selectedOptions
           : selectedOptions // ignore: cast_nullable_to_non_nullable
               as List<int>,
+      hasAnswered: null == hasAnswered
+          ? _value.hasAnswered
+          : hasAnswered // ignore: cast_nullable_to_non_nullable
+              as bool,
       getIsSelected: null == getIsSelected
           ? _value.getIsSelected
           : getIsSelected // ignore: cast_nullable_to_non_nullable
@@ -157,14 +170,14 @@ class __$$QuizScreenStateImplCopyWithImpl<$Res>
           ? _value.changeSelected
           : changeSelected // ignore: cast_nullable_to_non_nullable
               as void Function(int),
+      showAnswer: null == showAnswer
+          ? _value.showAnswer
+          : showAnswer // ignore: cast_nullable_to_non_nullable
+              as bool Function(),
       checkAnswer: null == checkAnswer
           ? _value.checkAnswer
           : checkAnswer // ignore: cast_nullable_to_non_nullable
               as bool Function(),
-      goToNextQuiz: null == goToNextQuiz
-          ? _value.goToNextQuiz
-          : goToNextQuiz // ignore: cast_nullable_to_non_nullable
-              as void Function(),
     ));
   }
 }
@@ -177,10 +190,11 @@ class _$QuizScreenStateImpl extends _QuizScreenState
       {required final List<Quiz> quizList,
       required this.currentQuizNumber,
       required final List<int> selectedOptions,
+      required this.hasAnswered,
       required this.getIsSelected,
       required this.changeSelected,
-      required this.checkAnswer,
-      required this.goToNextQuiz})
+      required this.showAnswer,
+      required this.checkAnswer})
       : _quizList = quizList,
         _selectedOptions = selectedOptions,
         super._();
@@ -204,17 +218,19 @@ class _$QuizScreenStateImpl extends _QuizScreenState
   }
 
   @override
+  final bool hasAnswered;
+  @override
   final bool Function(int) getIsSelected;
   @override
   final void Function(int) changeSelected;
   @override
-  final bool Function() checkAnswer;
+  final bool Function() showAnswer;
   @override
-  final void Function() goToNextQuiz;
+  final bool Function() checkAnswer;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'QuizScreenState(quizList: $quizList, currentQuizNumber: $currentQuizNumber, selectedOptions: $selectedOptions, getIsSelected: $getIsSelected, changeSelected: $changeSelected, checkAnswer: $checkAnswer, goToNextQuiz: $goToNextQuiz)';
+    return 'QuizScreenState(quizList: $quizList, currentQuizNumber: $currentQuizNumber, selectedOptions: $selectedOptions, hasAnswered: $hasAnswered, getIsSelected: $getIsSelected, changeSelected: $changeSelected, showAnswer: $showAnswer, checkAnswer: $checkAnswer)';
   }
 
   @override
@@ -225,10 +241,11 @@ class _$QuizScreenStateImpl extends _QuizScreenState
       ..add(DiagnosticsProperty('quizList', quizList))
       ..add(DiagnosticsProperty('currentQuizNumber', currentQuizNumber))
       ..add(DiagnosticsProperty('selectedOptions', selectedOptions))
+      ..add(DiagnosticsProperty('hasAnswered', hasAnswered))
       ..add(DiagnosticsProperty('getIsSelected', getIsSelected))
       ..add(DiagnosticsProperty('changeSelected', changeSelected))
-      ..add(DiagnosticsProperty('checkAnswer', checkAnswer))
-      ..add(DiagnosticsProperty('goToNextQuiz', goToNextQuiz));
+      ..add(DiagnosticsProperty('showAnswer', showAnswer))
+      ..add(DiagnosticsProperty('checkAnswer', checkAnswer));
   }
 
   @override
@@ -241,14 +258,16 @@ class _$QuizScreenStateImpl extends _QuizScreenState
                 other.currentQuizNumber == currentQuizNumber) &&
             const DeepCollectionEquality()
                 .equals(other._selectedOptions, _selectedOptions) &&
+            (identical(other.hasAnswered, hasAnswered) ||
+                other.hasAnswered == hasAnswered) &&
             (identical(other.getIsSelected, getIsSelected) ||
                 other.getIsSelected == getIsSelected) &&
             (identical(other.changeSelected, changeSelected) ||
                 other.changeSelected == changeSelected) &&
+            (identical(other.showAnswer, showAnswer) ||
+                other.showAnswer == showAnswer) &&
             (identical(other.checkAnswer, checkAnswer) ||
-                other.checkAnswer == checkAnswer) &&
-            (identical(other.goToNextQuiz, goToNextQuiz) ||
-                other.goToNextQuiz == goToNextQuiz));
+                other.checkAnswer == checkAnswer));
   }
 
   @override
@@ -257,10 +276,11 @@ class _$QuizScreenStateImpl extends _QuizScreenState
       const DeepCollectionEquality().hash(_quizList),
       currentQuizNumber,
       const DeepCollectionEquality().hash(_selectedOptions),
+      hasAnswered,
       getIsSelected,
       changeSelected,
-      checkAnswer,
-      goToNextQuiz);
+      showAnswer,
+      checkAnswer);
 
   @JsonKey(ignore: true)
   @override
@@ -275,10 +295,11 @@ abstract class _QuizScreenState extends QuizScreenState {
       {required final List<Quiz> quizList,
       required final int currentQuizNumber,
       required final List<int> selectedOptions,
+      required final bool hasAnswered,
       required final bool Function(int) getIsSelected,
       required final void Function(int) changeSelected,
-      required final bool Function() checkAnswer,
-      required final void Function() goToNextQuiz}) = _$QuizScreenStateImpl;
+      required final bool Function() showAnswer,
+      required final bool Function() checkAnswer}) = _$QuizScreenStateImpl;
   const _QuizScreenState._() : super._();
 
   @override
@@ -288,13 +309,15 @@ abstract class _QuizScreenState extends QuizScreenState {
   @override
   List<int> get selectedOptions;
   @override
+  bool get hasAnswered;
+  @override
   bool Function(int) get getIsSelected;
   @override
   void Function(int) get changeSelected;
   @override
-  bool Function() get checkAnswer;
+  bool Function() get showAnswer;
   @override
-  void Function() get goToNextQuiz;
+  bool Function() get checkAnswer;
   @override
   @JsonKey(ignore: true)
   _$$QuizScreenStateImplCopyWith<_$QuizScreenStateImpl> get copyWith =>
