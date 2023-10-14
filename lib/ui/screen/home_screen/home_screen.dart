@@ -3,6 +3,7 @@ import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:quiz_shower/data/model/article.dart';
+import 'package:quiz_shower/ui/screen/dashboard_screen.dart';
 import 'package:quiz_shower/ui/screen/home_screen/component/preview_card.dart';
 import 'package:quiz_shower/ui/screen/home_screen/hook/use_home_screen_state.dart';
 
@@ -83,6 +84,17 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
                   Navigator.pushNamed(context, '/setting_screen');
                 },
               ),
+              ListTile(
+                title: const Text('ダッシュボード'),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const DashboardScreen(),
+                    ),
+                  );
+                },
+              ),
               if (!_isUserLoggedIn)
                 ListTile(
                   title: const Text('ログイン/登録'),
@@ -94,6 +106,22 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
                         builder: (context) => SignInScreen(
                           actions: [
                             AuthStateChangeAction<SignedIn>((context, state) {
+                              _scaffoldMessengerKey.currentState?.showSnackBar(
+                                const SnackBar(
+                                  content: Text('ログインしました'),
+                                  duration: Duration(seconds: 2),
+                                ),
+                              );
+                              if (!mounted) return;
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      const QuizShowerScaffold(),
+                                ),
+                              );
+                            }),
+                            AuthStateChangeAction<UserCreated>(
+                                (context, state) {
                               _scaffoldMessengerKey.currentState?.showSnackBar(
                                 const SnackBar(
                                   content: Text('ログインしました'),
