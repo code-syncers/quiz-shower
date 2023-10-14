@@ -79,10 +79,10 @@ class DashboardScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              const Column(
+              Column(
                 children: [
-                  SizedBox(height: 16),
-                  Row(
+                  const SizedBox(height: 16),
+                  const Row(
                     children: [
                       Icon(
                         Icons.check_box_outline_blank_rounded,
@@ -95,17 +95,45 @@ class DashboardScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 12),
+                  const SizedBox(height: 12),
                   Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SizedBox(width: 24),
-                      Text('○/○○ 問正解(例)'),
-                      Spacer(),
-                      Text('ここにグラフを表示させる'),
+                      const SizedBox(width: 24),
+                      const Text('○/○○ 問正解(例)'),
+                      const Spacer(),
+                      Stack(
+                        alignment: AlignmentDirectional.center,
+                        children: <Widget>[
+                          SizedBox(
+                            width: 100,
+                            height: 100,
+                            child: CircularProgressIndicator(
+                              strokeWidth: 15,
+                              strokeAlign: BorderSide.strokeAlignOutside,
+                              value: 0.78, //ここを正答率に変更する
+                              color: Theme.of(context).colorScheme.primary,
+                              backgroundColor: Theme.of(context)
+                                  .colorScheme
+                                  .onBackground
+                                  .withOpacity(0.2),
+                              strokeCap: StrokeCap.round,
+                            ),
+                          ),
+                          const Text(
+                            '78%', //ここを正答率に変更する
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
-                  SizedBox(height: 16),
-                  Row(
+                  const SizedBox(height: 16),
+                  const Row(
                     children: [
                       Icon(
                         Icons.check_box_outline_blank_rounded,
@@ -118,8 +146,8 @@ class DashboardScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 12),
-                  Row(
+                  const SizedBox(height: 12),
+                  const Row(
                     children: [
                       SizedBox(width: 24),
                       Text('対戦結果を表示させる'),
