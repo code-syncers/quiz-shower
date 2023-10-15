@@ -6,7 +6,9 @@ import 'package:quiz_shower/ui/screen/quiz_screen/component/result_character.dar
 import 'package:quiz_shower/ui/screen/quiz_screen/quiz_screen.dart';
 
 class QuizResultScreen extends StatelessWidget {
-  const QuizResultScreen({super.key});
+  final String articleId;
+
+  const QuizResultScreen({super.key, required this.articleId});
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +81,9 @@ class QuizResultScreen extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const QuizScreen(),
+                        builder: (context) => QuizScreen(
+                          articleId: articleId,
+                        ),
                       ),
                     );
                   },

@@ -14,7 +14,8 @@ _$QuizImpl _$$QuizImplFromJson(Map<String, dynamic> json) => _$QuizImpl(
       isFavorite: json['isFavorite'] as bool,
       options:
           (json['options'] as List<dynamic>).map((e) => e as String).toList(),
-      answers: (json['answers'] as List<dynamic>).map((e) => e as int).toList(),
+      answers:
+          (json['answers'] as List<dynamic>).map((e) => e as String).toList(),
       explanation: json['explanation'] as String,
     );
 

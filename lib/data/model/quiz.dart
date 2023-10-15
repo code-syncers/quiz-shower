@@ -15,7 +15,7 @@ class Quiz with _$Quiz {
     required String statement,
     required bool isFavorite,
     required List<String> options,
-    required List<int> answers,
+    required List<String> answers,
     required String explanation,
   }) = _Quiz;
 
@@ -33,7 +33,7 @@ class Quiz with _$Quiz {
         '背景が透明なUIデザイン',
         'ユーザーが透明なUI要素を操作できるテクニック',
       ],
-      answers: [0],
+      answers: ['0'],
       explanation: '透明UIは、UI要素が見えないようにするテクニックを指します。',
     );
   }
