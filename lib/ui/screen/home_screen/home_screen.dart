@@ -1,11 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart' hide EmailAuthProvider;
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:quiz_shower/data/model/article.dart';
 import 'package:quiz_shower/ui/screen/dashboard_screen.dart';
+import 'package:quiz_shower/ui/screen/home_screen/add_article_screen.dart';
 import 'package:quiz_shower/ui/screen/home_screen/component/preview_card.dart';
 import 'package:quiz_shower/ui/screen/home_screen/hook/use_home_screen_state.dart';
+import 'package:quiz_shower/ui/screen/home_screen/share_app_screen.dart';
 
 class QuizShowerScaffold extends StatefulHookWidget {
   const QuizShowerScaffold({super.key});
@@ -62,8 +65,7 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
           ),
         ),
         drawer: Drawer(
-          child: ListView(
-            padding: EdgeInsets.zero,
+          child: Column(
             children: <Widget>[
               DrawerHeader(
                 decoration: BoxDecoration(
@@ -77,6 +79,14 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
                   ),
                 ),
               ),
+              if (kDebugMode)
+                ListTile(
+                  title: const Text('debug画面'),
+                  onTap: () {
+                    Navigator.pop(context);
+                    Navigator.pushNamed(context, '/debug');
+                  },
+                ),
               ListTile(
                 title: const Text('設定'),
                 onTap: () {
@@ -195,6 +205,64 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
                     );
                   },
                 ),
+              Expanded(
+                child: LayoutBuilder(
+                  builder: (context, constrains) {
+                    return SingleChildScrollView(
+                      child: ConstrainedBox(
+                        constraints: BoxConstraints(
+                          minHeight: constrains.maxHeight,
+                        ),
+                        child: IntrinsicHeight(
+                          child: Column(
+                            children: [
+                              ListTile(
+                                title: const Text('設定'),
+                                onTap: () {
+                                  Navigator.pop(context);
+                                  Navigator.pushNamed(
+                                    context,
+                                    '/setting_screen',
+                                  );
+                                },
+                              ),
+                              ListTile(
+                                title: const Text('ダッシュボード'),
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const DashboardScreen(),
+                                    ),
+                                  );
+                                },
+                              ),
+                              const Spacer(),
+                              const Divider(
+                                thickness: 1.0,
+                              ),
+                              ListTile(
+                                leading: const Icon(Icons.share_rounded),
+                                title: const Text('アプリを共有'),
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const ShareAppScreen(),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
             ],
           ),
         ),
@@ -225,6 +293,26 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
               ),
             ),
           ],
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            state.isQuizMode
+                ? Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const AddArticleScreen(),
+                    ),
+                  )
+                : Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const AddArticleScreen(),
+                    ),
+                  );
+          },
+          child: state.isQuizMode
+              ? const Icon(Icons.scoreboard_rounded)
+              : const Icon(Icons.add_rounded),
         ),
       ),
     );

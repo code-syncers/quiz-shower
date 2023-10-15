@@ -54,17 +54,33 @@ class QuizScreen extends HookWidget {
                       final optionIndex = entry.key;
                       final option = entry.value;
                       return InkWell(
-                        onTap: () {
-                          state.changeSelected(optionIndex);
-                        },
+                        onTap: state.hasAnswered
+                            ? null
+                            : () {
+                                state.changeSelected(optionIndex);
+                              },
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Row(
                             children: [
                               state.getIsSelected(optionIndex)
-                                  ? const Icon(Icons.check_box_rounded)
-                                  : const Icon(
+                                  ? Icon(
+                                      Icons.check_box_rounded,
+                                      color: state.hasAnswered
+                                          ? Theme.of(context)
+                                              .colorScheme
+                                              .onSurface
+                                              .withOpacity(0.5)
+                                          : null,
+                                    )
+                                  : Icon(
                                       Icons.check_box_outline_blank_rounded,
+                                      color: state.hasAnswered
+                                          ? Theme.of(context)
+                                              .colorScheme
+                                              .onSurface
+                                              .withOpacity(0.5)
+                                          : null,
                                     ),
                               const SizedBox(
                                 width: 8,
@@ -81,12 +97,14 @@ class QuizScreen extends HookWidget {
                     }).toList(),
                   ),
                   const SizedBox(height: 16),
-                  ElevatedButton(
-                    onPressed: () {
-                      state.showAnswer();
-                    },
-                    child: const Text('回答する'),
-                  ),
+                  state.hasAnswered
+                      ? const SizedBox()
+                      : ElevatedButton(
+                          onPressed: () {
+                            state.showAnswer();
+                          },
+                          child: const Text('回答する'),
+                        ),
                   if (state.hasAnswered)
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
