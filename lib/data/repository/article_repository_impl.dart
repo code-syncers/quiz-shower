@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:quiz_shower/data/model/article.dart';
 import 'package:quiz_shower/data/repository/article_repository.dart';
 
@@ -13,7 +14,8 @@ class ArticleRepositoryImpl implements ArticleRepository {
       );
 
   @override
-  Query<Article> articleQuery(String uid) {
+  Query<Article> articleQuery() {
+    final uid = FirebaseAuth.instance.currentUser!.uid;
     return articlesRef.where('createdBy', isEqualTo: uid);
   }
 

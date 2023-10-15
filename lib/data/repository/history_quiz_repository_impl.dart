@@ -22,6 +22,11 @@ class HistoryQuizRepositoryImpl implements HistoryQuizRepository {
           );
 
   @override
+  Query<HistoryQuiz> historyQuizQuery(String historyId) {
+    return historyQuizzesRef(historyId);
+  }
+
+  @override
   Future<HistoryQuiz?> getHistoryQuiz(String quizId, String historyId) async {
     final snapshot = await historyQuizzesRef(historyId).doc(quizId).get();
     return snapshot.data();

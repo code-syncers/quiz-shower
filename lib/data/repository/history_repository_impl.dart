@@ -14,6 +14,11 @@ class HistoryRepositoryImpl implements HistoryRepository {
       );
 
   @override
+  Query<History> historyQuery() {
+    return historiesRef;
+  }
+
+  @override
   Future<History?> getHistory(String id) async {
     final snapshot = await historiesRef.doc(id).get();
     return snapshot.data();

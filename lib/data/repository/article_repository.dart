@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:quiz_shower/data/model/article.dart';
 
 abstract class ArticleRepository {
-  Query<Article> articleQuery(String uid);
+  Query<Article> articleQuery();
 
   Future<Article?> getArticle(String id);
 
