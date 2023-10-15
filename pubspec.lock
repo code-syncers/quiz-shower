@@ -385,14 +385,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.8.0"
+  firebase_ui_firestore:
+    dependency: "direct main"
+    description:
+      name: firebase_ui_firestore
+      sha256: "75f57a44db98f05b6f06de10ce5ca322c10ba0fae28d91befe3afa24f3175a45"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.5.12"
   firebase_ui_localizations:
     dependency: "direct main"
     description:
       name: firebase_ui_localizations
-      sha256: "44a31e8dd846d56d744630836cce79a0463ed6f6442e53de48d54cbc5e860fe1"
+      sha256: cc3b3355c543f82d63c169848ab9011779a470e83f89b16c5c065d4e246087a0
       url: "https://pub.dev"
     source: hosted
-    version: "1.6.1"
+    version: "1.7.0"
   firebase_ui_oauth:
     dependency: transitive
     description:

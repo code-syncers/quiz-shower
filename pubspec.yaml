@@ -32,6 +32,7 @@ dependencies:
   font_awesome_flutter: ^10.5.0
   cupertino_icons: ^1.0.6
   uuid: ^3.0.7
+  firebase_ui_firestore: ^1.5.12
 
 dev_dependencies:
   flutter_test:
