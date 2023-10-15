@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_shower/data/model/history_quiz.dart';
 import 'package:quiz_shower/data/model/quiz.dart';
 import 'package:quiz_shower/ui/screen/home_screen/home_screen.dart';
 import 'package:quiz_shower/ui/screen/quiz_screen/component/result_character.dart';
 import 'package:quiz_shower/ui/screen/quiz_screen/quiz_screen.dart';
 
 class QuizResultScreen extends StatelessWidget {
-  QuizResultScreen({super.key});
-  final historyQuizList = [Quiz.mock()];
-  final correctedAnswers = 2;
+  const QuizResultScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final historyQuizList = [HistoryQuiz.mock()];
+    final quizList = [Quiz.mock()];
+    final correctedAnswers =
+        historyQuizList.where((quiz) => quiz.isCorrect).length;
     return Scaffold(
       appBar: AppBar(
         title: const Text('クイズ結果'),
@@ -121,7 +124,8 @@ class QuizResultScreen extends StatelessWidget {
               ),
               ...historyQuizList.asMap().entries.map((entry) {
                 int idx = entry.key;
-                Quiz quiz = entry.value;
+                HistoryQuiz historyQuiz = entry.value;
+                Quiz quiz = quizList[idx];
                 return ListTile(
                   subtitle: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -132,7 +136,9 @@ class QuizResultScreen extends StatelessWidget {
                           Expanded(child: Text(quiz.statement)),
                         ],
                       ),
-                      Text('答え: ${quiz.options[quiz.answers[0]]}'), // 正解の選択肢を表示
+                      Text(
+                        '答え: ${quiz.options[historyQuiz.choices[0]]}',
+                      ), // 正解の選択肢を表示
                     ],
                   ),
                 );
