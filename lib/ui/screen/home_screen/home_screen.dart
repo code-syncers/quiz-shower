@@ -73,24 +73,6 @@ class QuizShowerScaffold extends HookWidget {
                   Navigator.pushNamed(context, '/debug');
                 },
               ),
-            ListTile(
-              title: const Text('設定'),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.pushNamed(context, '/setting_screen');
-              },
-            ),
-            ListTile(
-              title: const Text('ダッシュボード'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const DashboardScreen(),
-                  ),
-                );
-              },
-            ),
             if (!state.isUserLoggedIn)
               ListTile(
                 title: const Text('ログイン/登録'),
