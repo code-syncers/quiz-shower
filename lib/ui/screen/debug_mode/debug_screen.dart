@@ -26,7 +26,7 @@ class DebugScreen extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => QuizResultScreen(),
+                  builder: (context) => const QuizResultScreen(),
                 ),
               );
             },
