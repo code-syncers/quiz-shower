@@ -23,6 +23,8 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
   bool _isUserLoggedIn = false;
   String _currentUserEmail = '';
 
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   void initState() {
     super.initState();
@@ -41,7 +43,6 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
           );
         });
       } else if (user == null && _isUserLoggedIn) {
-        _isUserLoggedIn = false;
         setState(() {
           _currentUserEmail = '';
         });
@@ -76,6 +77,7 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
     );
 
     return Scaffold(
+      key: _scaffoldKey,
       drawer: Drawer(
         child: Column(
           children: <Widget>[
@@ -314,11 +316,11 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
               barBackgroundColor:
                   MaterialStateProperty.all(searchBackgroundColor),
               barPadding: MaterialStateProperty.all(
-                const EdgeInsets.symmetric(horizontal: 8, vertical: 0),
+                const EdgeInsets.fromLTRB(8, 0, 10, 0),
               ),
               barLeading: IconButton(
                 icon: const Icon(Icons.menu_rounded),
-                onPressed: () => Scaffold.of(context).openDrawer(),
+                onPressed: () => _scaffoldKey.currentState?.openDrawer(),
               ),
               barHintText: '検索',
               barHintStyle: MaterialStateProperty.all(
@@ -347,23 +349,24 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
                       ),
                     ]
                   : [
-                      IconButton(
-                        onPressed: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => const SettingScreen(),
-                            ),
-                          );
-                        },
-                        icon: Container(
-                          clipBehavior: Clip.hardEdge,
-                          width: 36,
-                          height: 36,
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                          ),
-                          child: Image.asset(
-                            'assets/images/quiz_shower.png',
+                      Container(
+                        width: 36,
+                        height: 36,
+                        clipBehavior: Clip.hardEdge,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                        ),
+                        child: IconButton(
+                          onPressed: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => const SettingScreen(),
+                              ),
+                            );
+                          },
+                          padding: EdgeInsets.zero,
+                          icon: Image.network(
+                            'https://github.com/yumayuma708.png',
                           ),
                         ),
                       ),
@@ -448,7 +451,7 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
           Container(
             alignment: Alignment.bottomCenter,
             padding: EdgeInsets.only(
-              bottom: MediaQuery.of(context).padding.bottom + 16,
+              bottom: MediaQuery.of(context).padding.bottom + 12,
             ),
             child: Theme(
               data: ThemeData(
@@ -468,14 +471,6 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
                   controller: useTabController(initialLength: 2),
                   onTap: (index) {
                     state.setMode(index == 1);
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(
-                          index == 1 ? 'クイズモード' : '記事モード',
-                        ),
-                        duration: const Duration(seconds: 1),
-                      ),
-                    );
                   },
                   tabs: const <Tab>[
                     Tab(
