@@ -26,7 +26,7 @@ mixin _$Quiz {
   String get statement => throw _privateConstructorUsedError;
   bool get isFavorite => throw _privateConstructorUsedError;
   List<String> get options => throw _privateConstructorUsedError;
-  List<int> get answers => throw _privateConstructorUsedError;
+  List<String> get answers => throw _privateConstructorUsedError;
   String get explanation => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -46,7 +46,7 @@ abstract class $QuizCopyWith<$Res> {
       String statement,
       bool isFavorite,
       List<String> options,
-      List<int> answers,
+      List<String> answers,
       String explanation});
 }
 
@@ -100,7 +100,7 @@ class _$QuizCopyWithImpl<$Res, $Val extends Quiz>
       answers: null == answers
           ? _value.answers
           : answers // ignore: cast_nullable_to_non_nullable
-              as List<int>,
+              as List<String>,
       explanation: null == explanation
           ? _value.explanation
           : explanation // ignore: cast_nullable_to_non_nullable
@@ -123,7 +123,7 @@ abstract class _$$QuizImplCopyWith<$Res> implements $QuizCopyWith<$Res> {
       String statement,
       bool isFavorite,
       List<String> options,
-      List<int> answers,
+      List<String> answers,
       String explanation});
 }
 
@@ -174,7 +174,7 @@ class __$$QuizImplCopyWithImpl<$Res>
       answers: null == answers
           ? _value._answers
           : answers // ignore: cast_nullable_to_non_nullable
-              as List<int>,
+              as List<String>,
       explanation: null == explanation
           ? _value.explanation
           : explanation // ignore: cast_nullable_to_non_nullable
@@ -193,7 +193,7 @@ class _$QuizImpl extends _Quiz with DiagnosticableTreeMixin {
       required this.statement,
       required this.isFavorite,
       required final List<String> options,
-      required final List<int> answers,
+      required final List<String> answers,
       required this.explanation})
       : _options = options,
         _answers = answers,
@@ -220,9 +220,9 @@ class _$QuizImpl extends _Quiz with DiagnosticableTreeMixin {
     return EqualUnmodifiableListView(_options);
   }
 
-  final List<int> _answers;
+  final List<String> _answers;
   @override
-  List<int> get answers {
+  List<String> get answers {
     if (_answers is EqualUnmodifiableListView) return _answers;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_answers);
@@ -305,7 +305,7 @@ abstract class _Quiz extends Quiz {
       required final String statement,
       required final bool isFavorite,
       required final List<String> options,
-      required final List<int> answers,
+      required final List<String> answers,
       required final String explanation}) = _$QuizImpl;
   const _Quiz._() : super._();
 
@@ -324,7 +324,7 @@ abstract class _Quiz extends Quiz {
   @override
   List<String> get options;
   @override
-  List<int> get answers;
+  List<String> get answers;
   @override
   String get explanation;
   @override

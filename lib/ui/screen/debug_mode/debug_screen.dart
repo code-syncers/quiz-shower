@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_shower/ui/screen/quiz_screen/quiz_result_screen.dart';
 
 class DebugScreen extends StatelessWidget {
   const DebugScreen({
@@ -20,17 +19,17 @@ class DebugScreen extends StatelessWidget {
               Navigator.pushNamed(context, '/article');
             },
           ),
-          ListTile(
-            title: const Text('クイズ結果画面'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const QuizResultScreen(),
-                ),
-              );
-            },
-          ),
+          // ListTile(
+          //   title: const Text('クイズ結果画面'),
+          //   onTap: () {
+          //     Navigator.push(
+          //       context,
+          //       MaterialPageRoute(
+          //         builder: (context) => const QuizResultScreen(),
+          //       ),
+          //     );
+          //   },
+          // ),
           ListTile(
             title: const Text('デバッグ情報3'),
             onTap: () {
