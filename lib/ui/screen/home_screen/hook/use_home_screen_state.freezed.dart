@@ -16,6 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$HomeScreenState {
+  bool get isUserLoggedIn => throw _privateConstructorUsedError;
+  String get currentUserEmail => throw _privateConstructorUsedError;
   bool get isQuizMode => throw _privateConstructorUsedError;
   void Function(bool) get setMode => throw _privateConstructorUsedError;
 
@@ -30,7 +32,11 @@ abstract class $HomeScreenStateCopyWith<$Res> {
           HomeScreenState value, $Res Function(HomeScreenState) then) =
       _$HomeScreenStateCopyWithImpl<$Res, HomeScreenState>;
   @useResult
-  $Res call({bool isQuizMode, void Function(bool) setMode});
+  $Res call(
+      {bool isUserLoggedIn,
+      String currentUserEmail,
+      bool isQuizMode,
+      void Function(bool) setMode});
 }
 
 /// @nodoc
@@ -46,10 +52,20 @@ class _$HomeScreenStateCopyWithImpl<$Res, $Val extends HomeScreenState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? isUserLoggedIn = null,
+    Object? currentUserEmail = null,
     Object? isQuizMode = null,
     Object? setMode = null,
   }) {
     return _then(_value.copyWith(
+      isUserLoggedIn: null == isUserLoggedIn
+          ? _value.isUserLoggedIn
+          : isUserLoggedIn // ignore: cast_nullable_to_non_nullable
+              as bool,
+      currentUserEmail: null == currentUserEmail
+          ? _value.currentUserEmail
+          : currentUserEmail // ignore: cast_nullable_to_non_nullable
+              as String,
       isQuizMode: null == isQuizMode
           ? _value.isQuizMode
           : isQuizMode // ignore: cast_nullable_to_non_nullable
@@ -70,7 +86,11 @@ abstract class _$$HomeScreenStateImplCopyWith<$Res>
       __$$HomeScreenStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isQuizMode, void Function(bool) setMode});
+  $Res call(
+      {bool isUserLoggedIn,
+      String currentUserEmail,
+      bool isQuizMode,
+      void Function(bool) setMode});
 }
 
 /// @nodoc
@@ -84,10 +104,20 @@ class __$$HomeScreenStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? isUserLoggedIn = null,
+    Object? currentUserEmail = null,
     Object? isQuizMode = null,
     Object? setMode = null,
   }) {
     return _then(_$HomeScreenStateImpl(
+      isUserLoggedIn: null == isUserLoggedIn
+          ? _value.isUserLoggedIn
+          : isUserLoggedIn // ignore: cast_nullable_to_non_nullable
+              as bool,
+      currentUserEmail: null == currentUserEmail
+          ? _value.currentUserEmail
+          : currentUserEmail // ignore: cast_nullable_to_non_nullable
+              as String,
       isQuizMode: null == isQuizMode
           ? _value.isQuizMode
           : isQuizMode // ignore: cast_nullable_to_non_nullable
@@ -103,9 +133,17 @@ class __$$HomeScreenStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$HomeScreenStateImpl extends _HomeScreenState {
-  const _$HomeScreenStateImpl({required this.isQuizMode, required this.setMode})
+  const _$HomeScreenStateImpl(
+      {required this.isUserLoggedIn,
+      required this.currentUserEmail,
+      required this.isQuizMode,
+      required this.setMode})
       : super._();
 
+  @override
+  final bool isUserLoggedIn;
+  @override
+  final String currentUserEmail;
   @override
   final bool isQuizMode;
   @override
@@ -113,7 +151,7 @@ class _$HomeScreenStateImpl extends _HomeScreenState {
 
   @override
   String toString() {
-    return 'HomeScreenState(isQuizMode: $isQuizMode, setMode: $setMode)';
+    return 'HomeScreenState(isUserLoggedIn: $isUserLoggedIn, currentUserEmail: $currentUserEmail, isQuizMode: $isQuizMode, setMode: $setMode)';
   }
 
   @override
@@ -121,13 +159,18 @@ class _$HomeScreenStateImpl extends _HomeScreenState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$HomeScreenStateImpl &&
+            (identical(other.isUserLoggedIn, isUserLoggedIn) ||
+                other.isUserLoggedIn == isUserLoggedIn) &&
+            (identical(other.currentUserEmail, currentUserEmail) ||
+                other.currentUserEmail == currentUserEmail) &&
             (identical(other.isQuizMode, isQuizMode) ||
                 other.isQuizMode == isQuizMode) &&
             (identical(other.setMode, setMode) || other.setMode == setMode));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isQuizMode, setMode);
+  int get hashCode => Object.hash(
+      runtimeType, isUserLoggedIn, currentUserEmail, isQuizMode, setMode);
 
   @JsonKey(ignore: true)
   @override
@@ -139,10 +182,16 @@ class _$HomeScreenStateImpl extends _HomeScreenState {
 
 abstract class _HomeScreenState extends HomeScreenState {
   const factory _HomeScreenState(
-      {required final bool isQuizMode,
+      {required final bool isUserLoggedIn,
+      required final String currentUserEmail,
+      required final bool isQuizMode,
       required final void Function(bool) setMode}) = _$HomeScreenStateImpl;
   const _HomeScreenState._() : super._();
 
+  @override
+  bool get isUserLoggedIn;
+  @override
+  String get currentUserEmail;
   @override
   bool get isQuizMode;
   @override

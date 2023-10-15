@@ -12,47 +12,17 @@ import 'package:quiz_shower/ui/screen/home_screen/hook/use_home_screen_state.dar
 import 'package:quiz_shower/ui/screen/home_screen/share_app_screen.dart';
 import 'package:quiz_shower/ui/screen/setting_screen/setting_screen.dart';
 
-class QuizShowerScaffold extends StatefulHookWidget {
+class QuizShowerScaffold extends HookWidget {
   const QuizShowerScaffold({super.key});
 
   @override
-  State<QuizShowerScaffold> createState() => _QuizShowerScaffoldState();
-}
-
-class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
-  bool _isUserLoggedIn = false;
-  String _currentUserEmail = '';
-
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
-  @override
-  void initState() {
-    super.initState();
-    FirebaseAuth.instance.authStateChanges().listen((user) {
-      if (user != null && !user.isAnonymous && !_isUserLoggedIn) {
-        _isUserLoggedIn = true;
-        setState(() {
-          _currentUserEmail = user.email ?? '';
-        });
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('ログインしました'),
-              duration: Duration(seconds: 2),
-            ),
-          );
-        });
-      } else if (user == null && _isUserLoggedIn) {
-        setState(() {
-          _currentUserEmail = '';
-        });
-      }
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
-    HomeScreenState state = useHomeScreenState(isQuizMode: false);
+    final scaffoldKey = GlobalKey<ScaffoldState>();
+    HomeScreenState state = useHomeScreenState(
+      isUserLoggedIn: false,
+      currentUserEmail: '',
+      isQuizMode: false,
+    );
     SearchController searchController = SearchController();
     final histories = [
       '履歴1',
@@ -77,7 +47,7 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
     );
 
     return Scaffold(
-      key: _scaffoldKey,
+      key: scaffoldKey,
       drawer: Drawer(
         child: Column(
           children: <Widget>[
@@ -86,7 +56,9 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
                 color: Theme.of(context).colorScheme.primary,
               ),
               child: Text(
-                _currentUserEmail.isEmpty ? 'ログインしていません' : _currentUserEmail,
+                state.currentUserEmail.isNotEmpty
+                    ? state.currentUserEmail
+                    : 'ログインしていません',
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.onPrimary,
                   fontSize: 24,
@@ -119,7 +91,7 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
                 );
               },
             ),
-            if (!_isUserLoggedIn)
+            if (!state.isUserLoggedIn)
               ListTile(
                 title: const Text('ログイン/登録'),
                 onTap: () async {
@@ -136,7 +108,6 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
                                 duration: Duration(seconds: 2),
                               ),
                             );
-                            if (!mounted) return;
                             Navigator.of(context).push(
                               MaterialPageRoute(
                                 builder: (context) =>
@@ -151,7 +122,6 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
                                 duration: Duration(seconds: 2),
                               ),
                             );
-                            if (!mounted) return;
                             Navigator.of(context).push(
                               MaterialPageRoute(
                                 builder: (context) =>
@@ -168,7 +138,7 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
                   );
                 },
               ),
-            if (_isUserLoggedIn)
+            if (state.isUserLoggedIn)
               ListTile(
                 title: const Text('ログアウト'),
                 onTap: () async {
@@ -320,7 +290,7 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
               ),
               barLeading: IconButton(
                 icon: const Icon(Icons.menu_rounded),
-                onPressed: () => _scaffoldKey.currentState?.openDrawer(),
+                onPressed: () => scaffoldKey.currentState?.openDrawer(),
               ),
               barHintText: '検索',
               barHintStyle: MaterialStateProperty.all(
