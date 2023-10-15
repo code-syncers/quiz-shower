@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_shower/data/model/quiz.dart';
-import 'package:quiz_shower/ui/screen/home_screen/component/result_character.dart';
 import 'package:quiz_shower/ui/screen/home_screen/home_screen.dart';
+import 'package:quiz_shower/ui/screen/quiz_screen/component/result_character.dart';
 import 'package:quiz_shower/ui/screen/quiz_screen/quiz_screen.dart';
 
 class QuizResultScreen extends StatelessWidget {
   QuizResultScreen({super.key});
-  final Quiz quiz = Quiz.mock();
-  final quizList = [Quiz.mock()];
+  final historyQuizList = [Quiz.mock()];
   final correctedAnswers = 2;
 
   @override
@@ -120,7 +119,7 @@ class QuizResultScreen extends StatelessWidget {
                   Text('クイズ', style: TextStyle(fontSize: 20)),
                 ],
               ),
-              ...quizList.asMap().entries.map((entry) {
+              ...historyQuizList.asMap().entries.map((entry) {
                 int idx = entry.key;
                 Quiz quiz = entry.value;
                 return ListTile(
