@@ -25,7 +25,7 @@ class PreviewCard extends StatelessWidget {
           isQuizMode
               ? Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => const QuizScreen(),
+                    builder: (context) => QuizScreen(articleId: article.id),
                   ),
                 )
               : launchUrlString(article.content);

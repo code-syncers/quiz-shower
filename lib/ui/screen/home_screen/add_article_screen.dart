@@ -84,9 +84,6 @@ class AddArticleScreen extends HookConsumerWidget {
               padding: const EdgeInsets.all(16.0),
               child: FloatingActionButton.extended(
                 onPressed: () async {
-                  debugPrint(urlController.text);
-                  debugPrint(titleController.text);
-                  debugPrint(contentController.text);
                   await repository.createArticle(
                     Article(
                       id: const Uuid().v4(),
