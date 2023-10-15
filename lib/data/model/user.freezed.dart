@@ -114,7 +114,7 @@ class __$$UserImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$UserImpl extends _User {
+class _$UserImpl extends _User with DiagnosticableTreeMixin {
   const _$UserImpl(
       {required this.userId, required this.displayName, required this.exp})
       : super._();
@@ -130,8 +130,18 @@ class _$UserImpl extends _User {
   final int exp;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'User(userId: $userId, displayName: $displayName, exp: $exp)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'User'))
+      ..add(DiagnosticsProperty('userId', userId))
+      ..add(DiagnosticsProperty('displayName', displayName))
+      ..add(DiagnosticsProperty('exp', exp));
   }
 
   @override

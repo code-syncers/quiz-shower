@@ -185,7 +185,7 @@ class __$$QuizImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$QuizImpl extends _Quiz {
+class _$QuizImpl extends _Quiz with DiagnosticableTreeMixin {
   const _$QuizImpl(
       {required this.id,
       required this.articleId,
@@ -232,8 +232,23 @@ class _$QuizImpl extends _Quiz {
   final String explanation;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'Quiz(id: $id, articleId: $articleId, title: $title, statement: $statement, isFavorite: $isFavorite, options: $options, answers: $answers, explanation: $explanation)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'Quiz'))
+      ..add(DiagnosticsProperty('id', id))
+      ..add(DiagnosticsProperty('articleId', articleId))
+      ..add(DiagnosticsProperty('title', title))
+      ..add(DiagnosticsProperty('statement', statement))
+      ..add(DiagnosticsProperty('isFavorite', isFavorite))
+      ..add(DiagnosticsProperty('options', options))
+      ..add(DiagnosticsProperty('answers', answers))
+      ..add(DiagnosticsProperty('explanation', explanation));
   }
 
   @override
