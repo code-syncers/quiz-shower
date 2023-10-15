@@ -7,20 +7,15 @@ export const createArticleQuizzes = async (
   articleId: string,
   type: "url" | "manual",
   content: string,
-  count: number,
+  count: number
 ) => {
-  if (type !== "url") {
-    throw new Error(
-      "Unimplemented Error: Only URL content is supported right now.",
-    );
-  }
-
   // When type is URL, convert the URL to markdown.
   const markdownString = await convertToMarkdown(content);
 
   // Create a quizzes from the markdown string.
+  const articleContent = type === "url" ? markdownString : content;
   const createQuiz = async (): Promise<Quiz> => {
-    const quizBody = await createArticleQuiz(markdownString);
+    const quizBody = await createArticleQuiz(articleContent);
 
     return {
       id: crypto.randomUUID(),
