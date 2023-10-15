@@ -12,6 +12,7 @@ export async function createChatCompletion(
     model: "gpt-3.5-turbo",
     function_call: { name: "create_quizzes" },
     functions: functions,
+    temperature: 0.9,
   });
 
   return response;
