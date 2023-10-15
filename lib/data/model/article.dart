@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:quiz_shower/data/model/firestore_datetime_convert.dart';
 
@@ -15,7 +17,6 @@ class Article with _$Article {
     required String description,
     required bool isBookmarked,
     required ArticleType type,
-    required String? url,
     required String content,
     @Default(false) bool isPublic,
     @FirestoreDateTimeConverter() required DateTime createdAt,
@@ -33,8 +34,7 @@ class Article with _$Article {
       description: 'Flutterで透明UIを作る方法を紹介します。',
       isBookmarked: false,
       type: ArticleType.url,
-      url: 'https://gajeroll.com/20230606-wwdc23/',
-      content: 'Flutterで透明UIを作る方法を紹介します。',
+      content: 'https://gajeroll.com/20230606-wwdc23/',
     );
   }
 }

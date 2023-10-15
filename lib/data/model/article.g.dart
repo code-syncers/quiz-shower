@@ -14,7 +14,6 @@ _$ArticleImpl _$$ArticleImplFromJson(Map<String, dynamic> json) =>
       description: json['description'] as String,
       isBookmarked: json['isBookmarked'] as bool,
       type: $enumDecode(_$ArticleTypeEnumMap, json['type']),
-      url: json['url'] as String?,
       content: json['content'] as String,
       isPublic: json['isPublic'] as bool? ?? false,
       createdAt: const FirestoreDateTimeConverter()
@@ -29,7 +28,6 @@ Map<String, dynamic> _$$ArticleImplToJson(_$ArticleImpl instance) =>
       'description': instance.description,
       'isBookmarked': instance.isBookmarked,
       'type': _$ArticleTypeEnumMap[instance.type]!,
-      'url': instance.url,
       'content': instance.content,
       'isPublic': instance.isPublic,
       'createdAt':

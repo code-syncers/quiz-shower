@@ -26,7 +26,6 @@ mixin _$Article {
   String get description => throw _privateConstructorUsedError;
   bool get isBookmarked => throw _privateConstructorUsedError;
   ArticleType get type => throw _privateConstructorUsedError;
-  String? get url => throw _privateConstructorUsedError;
   String get content => throw _privateConstructorUsedError;
   bool get isPublic => throw _privateConstructorUsedError;
   @FirestoreDateTimeConverter()
@@ -49,7 +48,6 @@ abstract class $ArticleCopyWith<$Res> {
       String description,
       bool isBookmarked,
       ArticleType type,
-      String? url,
       String content,
       bool isPublic,
       @FirestoreDateTimeConverter() DateTime createdAt});
@@ -74,7 +72,6 @@ class _$ArticleCopyWithImpl<$Res, $Val extends Article>
     Object? description = null,
     Object? isBookmarked = null,
     Object? type = null,
-    Object? url = freezed,
     Object? content = null,
     Object? isPublic = null,
     Object? createdAt = null,
@@ -104,10 +101,6 @@ class _$ArticleCopyWithImpl<$Res, $Val extends Article>
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as ArticleType,
-      url: freezed == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String?,
       content: null == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -138,7 +131,6 @@ abstract class _$$ArticleImplCopyWith<$Res> implements $ArticleCopyWith<$Res> {
       String description,
       bool isBookmarked,
       ArticleType type,
-      String? url,
       String content,
       bool isPublic,
       @FirestoreDateTimeConverter() DateTime createdAt});
@@ -161,7 +153,6 @@ class __$$ArticleImplCopyWithImpl<$Res>
     Object? description = null,
     Object? isBookmarked = null,
     Object? type = null,
-    Object? url = freezed,
     Object? content = null,
     Object? isPublic = null,
     Object? createdAt = null,
@@ -191,10 +182,6 @@ class __$$ArticleImplCopyWithImpl<$Res>
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as ArticleType,
-      url: freezed == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String?,
       content: null == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -213,7 +200,7 @@ class __$$ArticleImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ArticleImpl extends _Article {
+class _$ArticleImpl extends _Article with DiagnosticableTreeMixin {
   const _$ArticleImpl(
       {required this.id,
       required this.createdBy,
@@ -221,7 +208,6 @@ class _$ArticleImpl extends _Article {
       required this.description,
       required this.isBookmarked,
       required this.type,
-      required this.url,
       required this.content,
       this.isPublic = false,
       @FirestoreDateTimeConverter() required this.createdAt})
@@ -243,8 +229,6 @@ class _$ArticleImpl extends _Article {
   @override
   final ArticleType type;
   @override
-  final String? url;
-  @override
   final String content;
   @override
   @JsonKey()
@@ -254,8 +238,24 @@ class _$ArticleImpl extends _Article {
   final DateTime createdAt;
 
   @override
-  String toString() {
-    return 'Article(id: $id, createdBy: $createdBy, title: $title, description: $description, isBookmarked: $isBookmarked, type: $type, url: $url, content: $content, isPublic: $isPublic, createdAt: $createdAt)';
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'Article(id: $id, createdBy: $createdBy, title: $title, description: $description, isBookmarked: $isBookmarked, type: $type, content: $content, isPublic: $isPublic, createdAt: $createdAt)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'Article'))
+      ..add(DiagnosticsProperty('id', id))
+      ..add(DiagnosticsProperty('createdBy', createdBy))
+      ..add(DiagnosticsProperty('title', title))
+      ..add(DiagnosticsProperty('description', description))
+      ..add(DiagnosticsProperty('isBookmarked', isBookmarked))
+      ..add(DiagnosticsProperty('type', type))
+      ..add(DiagnosticsProperty('content', content))
+      ..add(DiagnosticsProperty('isPublic', isPublic))
+      ..add(DiagnosticsProperty('createdAt', createdAt));
   }
 
   @override
@@ -272,7 +272,6 @@ class _$ArticleImpl extends _Article {
             (identical(other.isBookmarked, isBookmarked) ||
                 other.isBookmarked == isBookmarked) &&
             (identical(other.type, type) || other.type == type) &&
-            (identical(other.url, url) || other.url == url) &&
             (identical(other.content, content) || other.content == content) &&
             (identical(other.isPublic, isPublic) ||
                 other.isPublic == isPublic) &&
@@ -283,7 +282,7 @@ class _$ArticleImpl extends _Article {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, createdBy, title,
-      description, isBookmarked, type, url, content, isPublic, createdAt);
+      description, isBookmarked, type, content, isPublic, createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -307,7 +306,6 @@ abstract class _Article extends Article {
           required final String description,
           required final bool isBookmarked,
           required final ArticleType type,
-          required final String? url,
           required final String content,
           final bool isPublic,
           @FirestoreDateTimeConverter() required final DateTime createdAt}) =
@@ -328,8 +326,6 @@ abstract class _Article extends Article {
   bool get isBookmarked;
   @override
   ArticleType get type;
-  @override
-  String? get url;
   @override
   String get content;
   @override
