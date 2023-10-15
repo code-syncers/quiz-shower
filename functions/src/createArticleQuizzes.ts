@@ -7,7 +7,7 @@ export const createArticleQuizzes = async (
   articleId: string,
   type: "url" | "manual",
   content: string,
-  count: number
+  count: number,
 ) => {
   // When type is URL, convert the URL to markdown.
   const markdownString = await convertToMarkdown(content);
