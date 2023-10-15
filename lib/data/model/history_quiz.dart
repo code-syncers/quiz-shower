@@ -1,6 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:quiz_shower/data/model/firestore_datetime_convert.dart';
 
 part 'history_quiz.freezed.dart';
+part 'history_quiz.g.dart';
 
 @freezed
 class HistoryQuiz with _$HistoryQuiz {
@@ -8,10 +11,13 @@ class HistoryQuiz with _$HistoryQuiz {
 
   const factory HistoryQuiz({
     required String quizId,
-    required DateTime time,
     required List<int> choices,
     required bool isCorrect,
+    @FirestoreDateTimeConverter() required DateTime time,
   }) = _HistoryQuiz;
+
+  factory HistoryQuiz.fromJson(Map<String, dynamic> json) =>
+      _$HistoryQuizFromJson(json);
 
   static HistoryQuiz mock() {
     return HistoryQuiz(

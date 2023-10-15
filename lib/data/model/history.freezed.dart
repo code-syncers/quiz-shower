@@ -14,6 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+History _$HistoryFromJson(Map<String, dynamic> json) {
+  return _History.fromJson(json);
+}
+
 /// @nodoc
 mixin _$History {
   String get id => throw _privateConstructorUsedError;
@@ -22,6 +26,7 @@ mixin _$History {
   bool get isTaisen => throw _privateConstructorUsedError;
   bool get isPublic => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $HistoryCopyWith<History> get copyWith => throw _privateConstructorUsedError;
 }
@@ -141,8 +146,8 @@ class __$$HistoryImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
-class _$HistoryImpl extends _History {
+@JsonSerializable()
+class _$HistoryImpl extends _History with DiagnosticableTreeMixin {
   const _$HistoryImpl(
       {required this.id,
       required this.articleId,
@@ -150,6 +155,9 @@ class _$HistoryImpl extends _History {
       this.isTaisen = false,
       this.isPublic = false})
       : super._();
+
+  factory _$HistoryImpl.fromJson(Map<String, dynamic> json) =>
+      _$$HistoryImplFromJson(json);
 
   @override
   final String id;
@@ -165,8 +173,20 @@ class _$HistoryImpl extends _History {
   final bool isPublic;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'History(id: $id, articleId: $articleId, taisenId: $taisenId, isTaisen: $isTaisen, isPublic: $isPublic)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'History'))
+      ..add(DiagnosticsProperty('id', id))
+      ..add(DiagnosticsProperty('articleId', articleId))
+      ..add(DiagnosticsProperty('taisenId', taisenId))
+      ..add(DiagnosticsProperty('isTaisen', isTaisen))
+      ..add(DiagnosticsProperty('isPublic', isPublic));
   }
 
   @override
@@ -185,6 +205,7 @@ class _$HistoryImpl extends _History {
                 other.isPublic == isPublic));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode =>
       Object.hash(runtimeType, id, articleId, taisenId, isTaisen, isPublic);
@@ -194,6 +215,13 @@ class _$HistoryImpl extends _History {
   @pragma('vm:prefer-inline')
   _$$HistoryImplCopyWith<_$HistoryImpl> get copyWith =>
       __$$HistoryImplCopyWithImpl<_$HistoryImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$HistoryImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _History extends History {
@@ -204,6 +232,8 @@ abstract class _History extends History {
       final bool isTaisen,
       final bool isPublic}) = _$HistoryImpl;
   const _History._() : super._();
+
+  factory _History.fromJson(Map<String, dynamic> json) = _$HistoryImpl.fromJson;
 
   @override
   String get id;
