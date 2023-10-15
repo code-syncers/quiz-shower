@@ -3,10 +3,9 @@ import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:quiz_shower/data/model/article.dart';
 import 'package:quiz_shower/ui/screen/dashboard_screen.dart';
 import 'package:quiz_shower/ui/screen/home_screen/add_article_screen.dart';
-import 'package:quiz_shower/ui/screen/home_screen/component/preview_card.dart';
+import 'package:quiz_shower/ui/screen/home_screen/component/article_list.dart';
 import 'package:quiz_shower/ui/screen/home_screen/component/suggestion.dart';
 import 'package:quiz_shower/ui/screen/home_screen/hook/use_home_screen_state.dart';
 import 'package:quiz_shower/ui/screen/home_screen/share_app_screen.dart';
@@ -234,23 +233,24 @@ class QuizShowerScaffold extends HookWidget {
       body: Stack(
         alignment: AlignmentDirectional.topCenter,
         children: [
-          ListView.separated(
-            padding: EdgeInsets.fromLTRB(
-              8,
-              MediaQuery.of(context).padding.top + 80,
-              8,
-              80,
-            ),
-            itemCount: 50,
-            itemBuilder: (BuildContext context, int index) {
-              return PreviewCard(
-                article: Article.mock(),
-                isQuizMode: state.isQuizMode,
-              );
-            },
-            separatorBuilder: (BuildContext context, int index) =>
-                const SizedBox(height: 8),
-          ),
+          ArticleList(isQuizMode: state.isQuizMode),
+          // ListView.separated(
+          //   padding: EdgeInsets.fromLTRB(
+          //     8,
+          //     MediaQuery.of(context).padding.top + 80,
+          //     8,
+          //     80,
+          //   ),
+          //   itemCount: 50,
+          //   itemBuilder: (BuildContext context, int index) {
+          //     return PreviewCard(
+          //       article: Article.mock(),
+          //       isQuizMode: state.isQuizMode,
+          //     );
+          //   },
+          //   separatorBuilder: (BuildContext context, int index) =>
+          //       const SizedBox(height: 8),
+          // ),
           Padding(
             padding: EdgeInsets.only(
               top: MediaQuery.of(context).padding.top + 8,
