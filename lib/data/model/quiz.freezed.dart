@@ -14,6 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+Quiz _$QuizFromJson(Map<String, dynamic> json) {
+  return _Quiz.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Quiz {
   String get id => throw _privateConstructorUsedError;
@@ -25,6 +29,7 @@ mixin _$Quiz {
   List<int> get answers => throw _privateConstructorUsedError;
   String get explanation => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $QuizCopyWith<Quiz> get copyWith => throw _privateConstructorUsedError;
 }
@@ -179,8 +184,8 @@ class __$$QuizImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
-class _$QuizImpl extends _Quiz {
+@JsonSerializable()
+class _$QuizImpl extends _Quiz with DiagnosticableTreeMixin {
   const _$QuizImpl(
       {required this.id,
       required this.articleId,
@@ -193,6 +198,9 @@ class _$QuizImpl extends _Quiz {
       : _options = options,
         _answers = answers,
         super._();
+
+  factory _$QuizImpl.fromJson(Map<String, dynamic> json) =>
+      _$$QuizImplFromJson(json);
 
   @override
   final String id;
@@ -224,8 +232,23 @@ class _$QuizImpl extends _Quiz {
   final String explanation;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'Quiz(id: $id, articleId: $articleId, title: $title, statement: $statement, isFavorite: $isFavorite, options: $options, answers: $answers, explanation: $explanation)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'Quiz'))
+      ..add(DiagnosticsProperty('id', id))
+      ..add(DiagnosticsProperty('articleId', articleId))
+      ..add(DiagnosticsProperty('title', title))
+      ..add(DiagnosticsProperty('statement', statement))
+      ..add(DiagnosticsProperty('isFavorite', isFavorite))
+      ..add(DiagnosticsProperty('options', options))
+      ..add(DiagnosticsProperty('answers', answers))
+      ..add(DiagnosticsProperty('explanation', explanation));
   }
 
   @override
@@ -247,6 +270,7 @@ class _$QuizImpl extends _Quiz {
                 other.explanation == explanation));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -264,6 +288,13 @@ class _$QuizImpl extends _Quiz {
   @pragma('vm:prefer-inline')
   _$$QuizImplCopyWith<_$QuizImpl> get copyWith =>
       __$$QuizImplCopyWithImpl<_$QuizImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$QuizImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _Quiz extends Quiz {
@@ -277,6 +308,8 @@ abstract class _Quiz extends Quiz {
       required final List<int> answers,
       required final String explanation}) = _$QuizImpl;
   const _Quiz._() : super._();
+
+  factory _Quiz.fromJson(Map<String, dynamic> json) = _$QuizImpl.fromJson;
 
   @override
   String get id;

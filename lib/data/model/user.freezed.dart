@@ -14,12 +14,17 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+User _$UserFromJson(Map<String, dynamic> json) {
+  return _User.fromJson(json);
+}
+
 /// @nodoc
 mixin _$User {
   String get userId => throw _privateConstructorUsedError;
   String get displayName => throw _privateConstructorUsedError;
   int get exp => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $UserCopyWith<User> get copyWith => throw _privateConstructorUsedError;
 }
@@ -108,11 +113,14 @@ class __$$UserImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
-class _$UserImpl extends _User {
+@JsonSerializable()
+class _$UserImpl extends _User with DiagnosticableTreeMixin {
   const _$UserImpl(
       {required this.userId, required this.displayName, required this.exp})
       : super._();
+
+  factory _$UserImpl.fromJson(Map<String, dynamic> json) =>
+      _$$UserImplFromJson(json);
 
   @override
   final String userId;
@@ -122,8 +130,18 @@ class _$UserImpl extends _User {
   final int exp;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'User(userId: $userId, displayName: $displayName, exp: $exp)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'User'))
+      ..add(DiagnosticsProperty('userId', userId))
+      ..add(DiagnosticsProperty('displayName', displayName))
+      ..add(DiagnosticsProperty('exp', exp));
   }
 
   @override
@@ -137,6 +155,7 @@ class _$UserImpl extends _User {
             (identical(other.exp, exp) || other.exp == exp));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, userId, displayName, exp);
 
@@ -145,6 +164,13 @@ class _$UserImpl extends _User {
   @pragma('vm:prefer-inline')
   _$$UserImplCopyWith<_$UserImpl> get copyWith =>
       __$$UserImplCopyWithImpl<_$UserImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$UserImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _User extends User {
@@ -153,6 +179,8 @@ abstract class _User extends User {
       required final String displayName,
       required final int exp}) = _$UserImpl;
   const _User._() : super._();
+
+  factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
 
   @override
   String get userId;

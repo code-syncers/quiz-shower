@@ -5,6 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:logger/logger.dart';
 import 'package:quiz_shower/firebase_options.dart';
 import 'package:quiz_shower/quiz_shower_app.dart';
@@ -28,5 +29,5 @@ void main() async {
     }
   }
 
-  runApp(const QuizShowerApp());
+  runApp(const ProviderScope(child: QuizShowerApp()));
 }
