@@ -9,8 +9,12 @@ class HistoryQuizRepositoryImpl implements HistoryQuizRepository {
 
   static CollectionReference<HistoryQuiz> historyQuizzesRef(String historyId) =>
       FirebaseFirestore.instance
-          .collection(historyQuizCollectionPath(
-              FirebaseAuth.instance.currentUser!.uid, historyId))
+          .collection(
+            historyQuizCollectionPath(
+              FirebaseAuth.instance.currentUser!.uid,
+              historyId,
+            ),
+          )
           .withConverter(
             fromFirestore: (snapshot, _) =>
                 HistoryQuiz.fromJson(snapshot.data()!),
@@ -25,7 +29,9 @@ class HistoryQuizRepositoryImpl implements HistoryQuizRepository {
 
   @override
   Future<void> createHistoryQuiz(
-      HistoryQuiz historyQuiz, String historyId) async {
+    HistoryQuiz historyQuiz,
+    String historyId,
+  ) async {
     await historyQuizzesRef(historyId)
         .doc(historyQuiz.quizId)
         .set(historyQuiz, SetOptions(merge: true));

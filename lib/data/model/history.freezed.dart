@@ -147,7 +147,7 @@ class __$$HistoryImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$HistoryImpl extends _History {
+class _$HistoryImpl extends _History with DiagnosticableTreeMixin {
   const _$HistoryImpl(
       {required this.id,
       required this.articleId,
@@ -173,8 +173,20 @@ class _$HistoryImpl extends _History {
   final bool isPublic;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'History(id: $id, articleId: $articleId, taisenId: $taisenId, isTaisen: $isTaisen, isPublic: $isPublic)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'History'))
+      ..add(DiagnosticsProperty('id', id))
+      ..add(DiagnosticsProperty('articleId', articleId))
+      ..add(DiagnosticsProperty('taisenId', taisenId))
+      ..add(DiagnosticsProperty('isTaisen', isTaisen))
+      ..add(DiagnosticsProperty('isPublic', isPublic));
   }
 
   @override
