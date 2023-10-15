@@ -445,14 +445,79 @@ class _QuizShowerScaffoldState extends State<QuizShowerScaffold> {
               },
             ),
           ),
-          SafeArea(
-            child: Align(
-              alignment: AlignmentDirectional.bottomCenter,
-              child: Switch(
-                value: state.isQuizMode,
-                onChanged: (value) {
-                  state.toggleQuizMode();
-                },
+          Container(
+            alignment: Alignment.bottomCenter,
+            padding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).padding.bottom + 16,
+            ),
+            child: Theme(
+              data: ThemeData(
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+              ),
+              child: Container(
+                padding: const EdgeInsets.all(5),
+                clipBehavior: Clip.hardEdge,
+                decoration: BoxDecoration(
+                  color: Theme.of(context).brightness == Brightness.light
+                      ? Colors.white
+                      : Colors.black,
+                  borderRadius: BorderRadius.circular(40),
+                ),
+                child: TabBar(
+                  controller: useTabController(initialLength: 2),
+                  onTap: (index) {
+                    state.setMode(index == 1);
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(
+                          index == 1 ? 'クイズモード' : '記事モード',
+                        ),
+                        duration: const Duration(seconds: 1),
+                      ),
+                    );
+                  },
+                  tabs: const <Tab>[
+                    Tab(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(Icons.article_rounded),
+                          SizedBox(width: 8),
+                          Text('記事'),
+                          SizedBox(width: 4),
+                        ],
+                      ),
+                    ),
+                    Tab(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(Icons.quiz_rounded),
+                          SizedBox(width: 8),
+                          Text('クイズ'),
+                          SizedBox(width: 4),
+                        ],
+                      ),
+                    ),
+                  ],
+                  labelColor: Theme.of(context).colorScheme.onPrimary,
+                  unselectedLabelColor: Theme.of(context)
+                      .colorScheme
+                      .onBackground
+                      .withOpacity(0.5),
+                  isScrollable: true,
+                  padding: EdgeInsets.zero,
+                  indicator: BoxDecoration(
+                    borderRadius: BorderRadius.circular(40),
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                  indicatorSize: TabBarIndicatorSize.label,
+                  indicatorWeight: 0,
+                  indicatorPadding: const EdgeInsets.fromLTRB(-16, 0, -16, 0),
+                ),
               ),
             ),
           ),

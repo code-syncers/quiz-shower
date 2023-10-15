@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$HomeScreenState {
   bool get isQuizMode => throw _privateConstructorUsedError;
-  void Function() get toggleQuizMode => throw _privateConstructorUsedError;
+  void Function(bool) get setMode => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $HomeScreenStateCopyWith<HomeScreenState> get copyWith =>
@@ -30,7 +30,7 @@ abstract class $HomeScreenStateCopyWith<$Res> {
           HomeScreenState value, $Res Function(HomeScreenState) then) =
       _$HomeScreenStateCopyWithImpl<$Res, HomeScreenState>;
   @useResult
-  $Res call({bool isQuizMode, void Function() toggleQuizMode});
+  $Res call({bool isQuizMode, void Function(bool) setMode});
 }
 
 /// @nodoc
@@ -47,17 +47,17 @@ class _$HomeScreenStateCopyWithImpl<$Res, $Val extends HomeScreenState>
   @override
   $Res call({
     Object? isQuizMode = null,
-    Object? toggleQuizMode = null,
+    Object? setMode = null,
   }) {
     return _then(_value.copyWith(
       isQuizMode: null == isQuizMode
           ? _value.isQuizMode
           : isQuizMode // ignore: cast_nullable_to_non_nullable
               as bool,
-      toggleQuizMode: null == toggleQuizMode
-          ? _value.toggleQuizMode
-          : toggleQuizMode // ignore: cast_nullable_to_non_nullable
-              as void Function(),
+      setMode: null == setMode
+          ? _value.setMode
+          : setMode // ignore: cast_nullable_to_non_nullable
+              as void Function(bool),
     ) as $Val);
   }
 }
@@ -70,7 +70,7 @@ abstract class _$$HomeScreenStateImplCopyWith<$Res>
       __$$HomeScreenStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isQuizMode, void Function() toggleQuizMode});
+  $Res call({bool isQuizMode, void Function(bool) setMode});
 }
 
 /// @nodoc
@@ -85,17 +85,17 @@ class __$$HomeScreenStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? isQuizMode = null,
-    Object? toggleQuizMode = null,
+    Object? setMode = null,
   }) {
     return _then(_$HomeScreenStateImpl(
       isQuizMode: null == isQuizMode
           ? _value.isQuizMode
           : isQuizMode // ignore: cast_nullable_to_non_nullable
               as bool,
-      toggleQuizMode: null == toggleQuizMode
-          ? _value.toggleQuizMode
-          : toggleQuizMode // ignore: cast_nullable_to_non_nullable
-              as void Function(),
+      setMode: null == setMode
+          ? _value.setMode
+          : setMode // ignore: cast_nullable_to_non_nullable
+              as void Function(bool),
     ));
   }
 }
@@ -103,18 +103,17 @@ class __$$HomeScreenStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$HomeScreenStateImpl extends _HomeScreenState {
-  const _$HomeScreenStateImpl(
-      {required this.isQuizMode, required this.toggleQuizMode})
+  const _$HomeScreenStateImpl({required this.isQuizMode, required this.setMode})
       : super._();
 
   @override
   final bool isQuizMode;
   @override
-  final void Function() toggleQuizMode;
+  final void Function(bool) setMode;
 
   @override
   String toString() {
-    return 'HomeScreenState(isQuizMode: $isQuizMode, toggleQuizMode: $toggleQuizMode)';
+    return 'HomeScreenState(isQuizMode: $isQuizMode, setMode: $setMode)';
   }
 
   @override
@@ -124,12 +123,11 @@ class _$HomeScreenStateImpl extends _HomeScreenState {
             other is _$HomeScreenStateImpl &&
             (identical(other.isQuizMode, isQuizMode) ||
                 other.isQuizMode == isQuizMode) &&
-            (identical(other.toggleQuizMode, toggleQuizMode) ||
-                other.toggleQuizMode == toggleQuizMode));
+            (identical(other.setMode, setMode) || other.setMode == setMode));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isQuizMode, toggleQuizMode);
+  int get hashCode => Object.hash(runtimeType, isQuizMode, setMode);
 
   @JsonKey(ignore: true)
   @override
@@ -142,13 +140,13 @@ class _$HomeScreenStateImpl extends _HomeScreenState {
 abstract class _HomeScreenState extends HomeScreenState {
   const factory _HomeScreenState(
       {required final bool isQuizMode,
-      required final void Function() toggleQuizMode}) = _$HomeScreenStateImpl;
+      required final void Function(bool) setMode}) = _$HomeScreenStateImpl;
   const _HomeScreenState._() : super._();
 
   @override
   bool get isQuizMode;
   @override
-  void Function() get toggleQuizMode;
+  void Function(bool) get setMode;
   @override
   @JsonKey(ignore: true)
   _$$HomeScreenStateImplCopyWith<_$HomeScreenStateImpl> get copyWith =>

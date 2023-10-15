@@ -9,7 +9,7 @@ class HomeScreenState with _$HomeScreenState {
 
   const factory HomeScreenState({
     required bool isQuizMode,
-    required void Function() toggleQuizMode,
+    required void Function(bool) setMode,
   }) = _HomeScreenState;
 }
 
@@ -18,12 +18,12 @@ HomeScreenState useHomeScreenState({
 }) {
   final isQuizModeState = useState(isQuizMode);
 
-  void toggleQuizMode() {
-    isQuizModeState.value = !isQuizModeState.value;
+  void setMode(bool isQuizMode) {
+    isQuizModeState.value = isQuizMode;
   }
 
   return HomeScreenState(
     isQuizMode: isQuizModeState.value,
-    toggleQuizMode: toggleQuizMode,
+    setMode: setMode,
   );
 }
