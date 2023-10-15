@@ -14,13 +14,19 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+HistoryQuiz _$HistoryQuizFromJson(Map<String, dynamic> json) {
+  return _HistoryQuiz.fromJson(json);
+}
+
 /// @nodoc
 mixin _$HistoryQuiz {
   String get quizId => throw _privateConstructorUsedError;
-  DateTime get time => throw _privateConstructorUsedError;
   List<int> get choices => throw _privateConstructorUsedError;
   bool get isCorrect => throw _privateConstructorUsedError;
+  @FirestoreDateTimeConverter()
+  DateTime get time => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $HistoryQuizCopyWith<HistoryQuiz> get copyWith =>
       throw _privateConstructorUsedError;
@@ -32,7 +38,11 @@ abstract class $HistoryQuizCopyWith<$Res> {
           HistoryQuiz value, $Res Function(HistoryQuiz) then) =
       _$HistoryQuizCopyWithImpl<$Res, HistoryQuiz>;
   @useResult
-  $Res call({String quizId, DateTime time, List<int> choices, bool isCorrect});
+  $Res call(
+      {String quizId,
+      List<int> choices,
+      bool isCorrect,
+      @FirestoreDateTimeConverter() DateTime time});
 }
 
 /// @nodoc
@@ -49,19 +59,15 @@ class _$HistoryQuizCopyWithImpl<$Res, $Val extends HistoryQuiz>
   @override
   $Res call({
     Object? quizId = null,
-    Object? time = null,
     Object? choices = null,
     Object? isCorrect = null,
+    Object? time = null,
   }) {
     return _then(_value.copyWith(
       quizId: null == quizId
           ? _value.quizId
           : quizId // ignore: cast_nullable_to_non_nullable
               as String,
-      time: null == time
-          ? _value.time
-          : time // ignore: cast_nullable_to_non_nullable
-              as DateTime,
       choices: null == choices
           ? _value.choices
           : choices // ignore: cast_nullable_to_non_nullable
@@ -70,6 +76,10 @@ class _$HistoryQuizCopyWithImpl<$Res, $Val extends HistoryQuiz>
           ? _value.isCorrect
           : isCorrect // ignore: cast_nullable_to_non_nullable
               as bool,
+      time: null == time
+          ? _value.time
+          : time // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ) as $Val);
   }
 }
@@ -82,7 +92,11 @@ abstract class _$$HistoryQuizImplCopyWith<$Res>
       __$$HistoryQuizImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String quizId, DateTime time, List<int> choices, bool isCorrect});
+  $Res call(
+      {String quizId,
+      List<int> choices,
+      bool isCorrect,
+      @FirestoreDateTimeConverter() DateTime time});
 }
 
 /// @nodoc
@@ -97,19 +111,15 @@ class __$$HistoryQuizImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? quizId = null,
-    Object? time = null,
     Object? choices = null,
     Object? isCorrect = null,
+    Object? time = null,
   }) {
     return _then(_$HistoryQuizImpl(
       quizId: null == quizId
           ? _value.quizId
           : quizId // ignore: cast_nullable_to_non_nullable
               as String,
-      time: null == time
-          ? _value.time
-          : time // ignore: cast_nullable_to_non_nullable
-              as DateTime,
       choices: null == choices
           ? _value._choices
           : choices // ignore: cast_nullable_to_non_nullable
@@ -118,25 +128,30 @@ class __$$HistoryQuizImplCopyWithImpl<$Res>
           ? _value.isCorrect
           : isCorrect // ignore: cast_nullable_to_non_nullable
               as bool,
+      time: null == time
+          ? _value.time
+          : time // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$HistoryQuizImpl extends _HistoryQuiz {
   const _$HistoryQuizImpl(
       {required this.quizId,
-      required this.time,
       required final List<int> choices,
-      required this.isCorrect})
+      required this.isCorrect,
+      @FirestoreDateTimeConverter() required this.time})
       : _choices = choices,
         super._();
 
+  factory _$HistoryQuizImpl.fromJson(Map<String, dynamic> json) =>
+      _$$HistoryQuizImplFromJson(json);
+
   @override
   final String quizId;
-  @override
-  final DateTime time;
   final List<int> _choices;
   @override
   List<int> get choices {
@@ -147,10 +162,13 @@ class _$HistoryQuizImpl extends _HistoryQuiz {
 
   @override
   final bool isCorrect;
+  @override
+  @FirestoreDateTimeConverter()
+  final DateTime time;
 
   @override
   String toString() {
-    return 'HistoryQuiz(quizId: $quizId, time: $time, choices: $choices, isCorrect: $isCorrect)';
+    return 'HistoryQuiz(quizId: $quizId, choices: $choices, isCorrect: $isCorrect, time: $time)';
   }
 
   @override
@@ -159,39 +177,52 @@ class _$HistoryQuizImpl extends _HistoryQuiz {
         (other.runtimeType == runtimeType &&
             other is _$HistoryQuizImpl &&
             (identical(other.quizId, quizId) || other.quizId == quizId) &&
-            (identical(other.time, time) || other.time == time) &&
             const DeepCollectionEquality().equals(other._choices, _choices) &&
             (identical(other.isCorrect, isCorrect) ||
-                other.isCorrect == isCorrect));
+                other.isCorrect == isCorrect) &&
+            (identical(other.time, time) || other.time == time));
   }
 
+  @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, quizId, time,
-      const DeepCollectionEquality().hash(_choices), isCorrect);
+  int get hashCode => Object.hash(runtimeType, quizId,
+      const DeepCollectionEquality().hash(_choices), isCorrect, time);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$HistoryQuizImplCopyWith<_$HistoryQuizImpl> get copyWith =>
       __$$HistoryQuizImplCopyWithImpl<_$HistoryQuizImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$HistoryQuizImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _HistoryQuiz extends HistoryQuiz {
   const factory _HistoryQuiz(
-      {required final String quizId,
-      required final DateTime time,
-      required final List<int> choices,
-      required final bool isCorrect}) = _$HistoryQuizImpl;
+          {required final String quizId,
+          required final List<int> choices,
+          required final bool isCorrect,
+          @FirestoreDateTimeConverter() required final DateTime time}) =
+      _$HistoryQuizImpl;
   const _HistoryQuiz._() : super._();
+
+  factory _HistoryQuiz.fromJson(Map<String, dynamic> json) =
+      _$HistoryQuizImpl.fromJson;
 
   @override
   String get quizId;
   @override
-  DateTime get time;
-  @override
   List<int> get choices;
   @override
   bool get isCorrect;
+  @override
+  @FirestoreDateTimeConverter()
+  DateTime get time;
   @override
   @JsonKey(ignore: true)
   _$$HistoryQuizImplCopyWith<_$HistoryQuizImpl> get copyWith =>
