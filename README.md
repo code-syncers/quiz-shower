@@ -1,3 +1,5 @@
+![quizshower](https://github.com/code-syncers/quiz-shower/assets/84573152/f7684b63-8929-4f91-b48c-7bfbdffc308f)
+
 # QuizShower
 
 [![Build](https://github.com/code-syncers/quiz-shower/actions/workflows/build.yml/badge.svg)](https://github.com/code-syncers/quiz-shower/actions/workflows/build.yml)
